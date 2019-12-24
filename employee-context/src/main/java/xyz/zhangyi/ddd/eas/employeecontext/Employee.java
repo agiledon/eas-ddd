@@ -12,12 +12,23 @@ public class Employee {
     private final Gender gender;
 
     public Employee(String name, IDCard idCard, Phone mobile, Gender gender) {
-        if (Strings.isNullOrEmpty(name)) throw new InvalidEmployeeException("Name should not be null or empty");
-        if (Objects.isNull(idCard)) throw new InvalidEmployeeException("ID Card should not be null");
-
-        this.name = name;
-        this.idCard = idCard;
+        this.name = validateName(name);;
+        this.idCard = requireNonNull(idCard, "ID Card should not be null");
         this.mobile = mobile;
         this.gender = gender;
+    }
+
+    private String validateName(String name) {
+        if (Strings.isNullOrEmpty(name)) {
+            throw new InvalidEmployeeException("Name should not be null or empty");
+        }
+        return name;
+    }
+
+    private <T> T requireNonNull(T obj, String errorMessage) {
+        if (Objects.isNull(obj)) {
+            throw new InvalidEmployeeException(errorMessage);
+        }
+        return obj;
     }
 }
