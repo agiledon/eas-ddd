@@ -1,5 +1,6 @@
 package xyz.zhangyi.ddd.eas.employeecontext;
 
+import org.junit.Before;
 import org.junit.Test;
 import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidIdCardException;
 
@@ -10,7 +11,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class IDCardTest {
     private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "Id card number should not be null or empty";
-    public static final String DIGIT_NUMBER_ERROR_MESSAGE = "is not begin with digit number";
+    private static final String DIGIT_NUMBER_ERROR_MESSAGE = "is not begin with digit number";
+    private DateTimeFormatter dateFormatter;
+
+    @Before
+    public void setUp() throws Exception {
+        dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+    }
 
     @Test
     public void should_throw_InvalidIdCardException_given_null_number() {
@@ -71,10 +78,16 @@ public class IDCardTest {
     @Test
     public void should_throw_InvalidIdCardException_given_number_with_birthday_after_now() {
         LocalDateTime now = LocalDateTime.now().plusDays(1);
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String strOfNow = now.format(dateFormatter);
 
         assertThatThrownBy(() -> new IDCard(String.format("510225%s5130", strOfNow)))
+                .isInstanceOf(InvalidIdCardException.class)
+                .hasMessageContaining("contains wrong birthday");
+    }
+
+    @Test
+    public void should_throw_InvalidIdCardException_given_number_with_birthday_before_1900() {
+        assertThatThrownBy(() -> new IDCard(String.format("510225%s5130", "18991231")))
                 .isInstanceOf(InvalidIdCardException.class)
                 .hasMessageContaining("contains wrong birthday");
     }

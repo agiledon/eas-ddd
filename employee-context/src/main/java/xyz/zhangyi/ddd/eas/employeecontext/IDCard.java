@@ -49,7 +49,7 @@ public class IDCard {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         try {
             LocalDate birthday = LocalDate.parse(birthdayPart, dateFormatter);
-            if (birthday.isAfter(LocalDate.now())) {
+            if (birthday.isAfter(LocalDate.now()) || birthday.isBefore(LocalDate.of(1900, 1, 1))) {
                 throw new InvalidIdCardException(String.format("%s contains wrong birthday", number));
             }
         } catch (DateTimeParseException ex) {
