@@ -8,17 +8,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class EmployeeTest {
 
-    private IDCard validIdCard;
-    private Phone validPhone;
-    private Gender validGender;
-    private String validName;
+    private static String validName;
+    private static IDCard validIdCard;
+    private static Phone validPhone;
+    private static Gender validGender;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        validName = "zhangyi";
         validIdCard = new IDCard("510222199011015130");
         validPhone = new Phone("13013220101");
         validGender = Gender.Male;
-        validName = "zhangyi";
     }
 
     @Test
@@ -46,5 +46,23 @@ public class EmployeeTest {
         assertThatThrownBy(() -> new Employee(validName, idCard, validPhone, validGender))
                 .isInstanceOf(InvalidEmployeeException.class)
                 .hasMessageContaining("ID Card should not be null");
+    }
+
+    @Test
+    public void should_throw_InvalidEmployeeException_if_mobile_phone_is_null() {
+        Phone mobile = null;
+
+        assertThatThrownBy(() -> new Employee(validName, validIdCard, mobile, validGender))
+                .isInstanceOf(InvalidEmployeeException.class)
+                .hasMessageContaining("Mobile Phone should not be null");
+    }
+
+    @Test
+    public void should_throw_InvalidEmployeeException_if_gender_is_null() {
+        Gender gender = null;
+
+        assertThatThrownBy(() -> new Employee(validName, validIdCard, validPhone, gender))
+                .isInstanceOf(InvalidEmployeeException.class)
+                .hasMessageContaining("Gender should not be null");
     }
 }

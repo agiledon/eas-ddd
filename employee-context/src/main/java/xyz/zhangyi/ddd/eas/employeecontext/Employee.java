@@ -14,8 +14,8 @@ public class Employee {
     public Employee(String name, IDCard idCard, Phone mobile, Gender gender) {
         this.name = validateName(name);;
         this.idCard = requireNonNull(idCard, "ID Card should not be null");
-        this.mobile = mobile;
-        this.gender = gender;
+        this.mobile = requireNonNull(mobile, "Mobile Phone should not be null");
+        this.gender = requireNonNull(gender, "Gender should not be null");
     }
 
     private String validateName(String name) {
