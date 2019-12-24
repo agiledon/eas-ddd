@@ -1,3 +1,10 @@
-.idea/
-*.iml
 target/
+!.mvn/wrapper/maven-wrapper.jar
+.DS_Store
+*.log
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

@@ -23,7 +23,7 @@
         <db.user>sa</db.user>
         <db.password>123456</db.password>
 
-        <guava.version>23.0</guava.version>
+        <guava.version>28.1-jre</guava.version>
         <slf4j.version>1.7.5</slf4j.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,6 +44,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
