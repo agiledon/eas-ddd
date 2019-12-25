@@ -7,15 +7,18 @@ import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidIdCardException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class IDCardTest {
     private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "Id card number should not be null or empty";
     private static final String DIGIT_NUMBER_ERROR_MESSAGE = "is not begin with digit number";
     private DateTimeFormatter dateFormatter;
+    private String validIdCardNumberOfMale = "510225199011015136";
+    private String validIdCardNumberOfFemale = "510225199011015126";
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
     }
 
@@ -90,5 +93,20 @@ public class IDCardTest {
         assertThatThrownBy(() -> new IDCard(String.format("510225%s5130", "18991231")))
                 .isInstanceOf(InvalidIdCardException.class)
                 .hasMessageContaining("contains wrong birthday");
+    }
+
+    @Test
+    public void should_throw_InvalidIdCardException_given_wrong_checksum() {
+        assertThatThrownBy(() -> new IDCard("510225199011015131"))
+                .isInstanceOf(InvalidIdCardException.class)
+                .hasMessageContaining("Checksum")
+                .hasMessageContaining("is wrong");
+    }
+
+    @Test
+    public void should_set_number_for_id_card() {
+        IDCard idCard = new IDCard(validIdCardNumberOfMale);
+
+        assertThat(idCard.number()).isEqualTo(validIdCardNumberOfMale);
     }
 }
