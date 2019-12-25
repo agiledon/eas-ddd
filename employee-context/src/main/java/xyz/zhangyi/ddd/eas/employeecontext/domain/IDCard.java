@@ -1,7 +1,6 @@
 package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 import com.google.common.base.Strings;
-import xyz.zhangyi.ddd.eas.employeecontext.utils.exceptions.InvalidDateTimeFormatException;
 import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidIdCardException;
 import xyz.zhangyi.ddd.eas.employeecontext.utils.DateTimes;
 
@@ -80,11 +79,9 @@ public class IDCard {
         }
 
         private void validateBirthday(String birthdayPart, LocalDate minDate, LocalDate maxDate) {
-            try {
-                DateTimes.validateFormat(birthdayPart, minDate, maxDate);
-            } catch (InvalidDateTimeFormatException ex) {
-                throw new InvalidIdCardException(ex.getMessage());
-            }
+                if (!DateTimes.isValidFormat(birthdayPart, minDate, maxDate)) {
+                    throw new InvalidIdCardException("Birthday of Id card is invalid.");
+                }
         }
 
         private void validateChecksum() {

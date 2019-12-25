@@ -71,4 +71,25 @@ public class EmployeeIdTest {
                 .isInstanceOf(InvalidEmployeeIdException.class)
                 .hasMessageContaining("Employee id should not be null or empty");
     }
+
+    @Test
+    public void should_throw_InvalidEmployeeIdException_given_incorrect_length_of_id_value() {
+        assertThatThrownBy(() -> new EmployeeId("1100110001011"))
+                .isInstanceOf(InvalidEmployeeIdException.class)
+                .hasMessageContaining("The length of employee id should be 12");
+    }
+
+    @Test
+    public void should_throw_InvalidEmployeeIdException_given_incorrect_on_boarding_date_of_id_value() {
+        assertThatThrownBy(() -> new EmployeeId("110011000101"))
+                .isInstanceOf(InvalidEmployeeIdException.class)
+                .hasMessageContaining("On boarding date of employee id is invalid");
+    }
+
+    @Test
+    public void should_throw_InvalidEmployeeIdException_given_incorrect_sequence_code_of_id_value() {
+        assertThatThrownBy(() -> new EmployeeId("20191201111X"))
+                .isInstanceOf(InvalidEmployeeIdException.class)
+                .hasMessageContaining("Sequence code of employee id is invalid");
+    }
 }

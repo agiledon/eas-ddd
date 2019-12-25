@@ -75,7 +75,7 @@ public class IDCardTest {
     public void should_throw_InvalidIdCardException_given_number_with_invalid_birthday() {
         assertThatThrownBy(() -> new IDCard("510225198013015130"))
                 .isInstanceOf(InvalidIdCardException.class)
-                .hasMessageContaining("is invalid birthday");
+                .hasMessageContaining("Birthday of Id card is invalid");
     }
 
     @Test
@@ -85,14 +85,14 @@ public class IDCardTest {
 
         assertThatThrownBy(() -> new IDCard(String.format("510225%s5130", strOfNow)))
                 .isInstanceOf(InvalidIdCardException.class)
-                .hasMessageContaining("is wrong birthday");
+                .hasMessageContaining("Birthday of Id card is invalid");
     }
 
     @Test
     public void should_throw_InvalidIdCardException_given_number_with_birthday_before_1900() {
         assertThatThrownBy(() -> new IDCard(String.format("510225%s5130", "18991231")))
                 .isInstanceOf(InvalidIdCardException.class)
-                .hasMessageContaining("is wrong birthday");
+                .hasMessageContaining("Birthday of Id card is invalid");
     }
 
     @Test
