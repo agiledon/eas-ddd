@@ -16,7 +16,7 @@ public class EmployeeTest {
     @Before
     public void setUp() {
         validName = "zhangyi";
-        validIdCard = new IDCard("510222199011015130");
+        validIdCard = new IDCard("34052419800101001X");
         validPhone = new Phone("13013220101");
         validGender = Gender.Male;
     }

@@ -14,8 +14,8 @@ public class IDCardTest {
     private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "Id card number should not be null or empty";
     private static final String DIGIT_NUMBER_ERROR_MESSAGE = "is not begin with digit number";
     private DateTimeFormatter dateFormatter;
-    private String validIdCardNumberOfMale = "510225199011015136";
-    private String validIdCardNumberOfFemale = "510225199011015126";
+    private String validIdCardNumberOfMale = "34052419800101001X";
+    private String validIdCardNumberOfFemale = "510225199011015187";
 
     @Before
     public void setUp() {
@@ -108,5 +108,19 @@ public class IDCardTest {
         IDCard idCard = new IDCard(validIdCardNumberOfMale);
 
         assertThat(idCard.number()).isEqualTo(validIdCardNumberOfMale);
+    }
+
+    @Test
+    public void should_be_male_given_number_with_odd_value_at_17() {
+        IDCard idCard = new IDCard(validIdCardNumberOfMale);
+
+        assertThat(idCard.isMale()).isTrue();
+    }
+
+    @Test
+    public void should_be_male_given_number_with_even_value_at_17() {
+        IDCard idCard = new IDCard(validIdCardNumberOfFemale);
+
+        assertThat(idCard.isFemale()).isTrue();
     }
 }

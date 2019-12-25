@@ -11,11 +11,12 @@ import java.util.regex.Pattern;
 
 public class IDCard {
     private String number;
+    private static final int LENGTH_OF_ID_CARD = 18;
 
     public IDCard(String number) {
         IDCardValidator idCardValidator = new IDCardValidator(number);
         idCardValidator.validate();
-        
+
         this.number = number;
     }
 
@@ -23,8 +24,20 @@ public class IDCard {
         return this.number;
     }
 
+    public boolean isMale() {
+        return getGenderCode() % 2 == 1;
+    }
+
+    public boolean isFemale() {
+        return getGenderCode() % 2 == 0;
+    }
+
+    private int getGenderCode() {
+        char genderFlag = number.charAt(LENGTH_OF_ID_CARD - 2);
+        return Character.getNumericValue(genderFlag);
+    }
+
     public static class IDCardValidator {
-        static final int LENGTH_OF_IDCARD = 18;
         private String number;
 
         IDCardValidator(String number) {
@@ -46,7 +59,7 @@ public class IDCard {
         }
 
         private void validateLength() {
-            if (this.number.length() != LENGTH_OF_IDCARD) {
+            if (this.number.length() != LENGTH_OF_ID_CARD) {
                 throw new InvalidIdCardException(String.format("Length of %s is not 18.", this.number));
             }
         }
@@ -75,7 +88,7 @@ public class IDCard {
         }
 
         private void validateChecksum() {
-            if (calculateChecksum() != this.number.charAt(LENGTH_OF_IDCARD - 1)) {
+            if (calculateChecksum() != this.number.charAt(LENGTH_OF_ID_CARD - 1)) {
                 throw new InvalidIdCardException(String.format("Checksum of %s is wrong", this.number));
             }
         }
