@@ -53,4 +53,18 @@ public class EmployeeIdTest {
                 .isInstanceOf(InvalidEmployeeIdException.class)
                 .hasMessageContaining("Invalid max value of sequence code");
     }
+
+    @Test
+    public void should_throw_InvalidEmployeeIdException_given_null_id_value() {
+        assertThatThrownBy(() -> new EmployeeId(null))
+                .isInstanceOf(InvalidEmployeeIdException.class)
+                .hasMessageContaining("Employee id should not be null");
+    }
+
+    @Test
+    public void should_throw_InvalidEmployeeIdException_given_empty_id_value() {
+        assertThatThrownBy(() -> new EmployeeId(""))
+                .isInstanceOf(InvalidEmployeeIdException.class)
+                .hasMessageContaining("Employee id should not be null or empty");
+    }
 }

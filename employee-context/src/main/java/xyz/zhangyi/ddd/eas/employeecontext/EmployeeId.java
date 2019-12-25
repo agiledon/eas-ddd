@@ -1,11 +1,18 @@
 package xyz.zhangyi.ddd.eas.employeecontext;
 
+import com.google.common.base.Strings;
+import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeIdException;
+
 import java.util.Objects;
 
 public class EmployeeId {
     private final String id;
 
     public EmployeeId(String id) {
+        if (Strings.isNullOrEmpty(id)) {
+            throw new InvalidEmployeeIdException("Employee id should not be null or empty.");
+        }
+
         this.id = id;
     }
 
