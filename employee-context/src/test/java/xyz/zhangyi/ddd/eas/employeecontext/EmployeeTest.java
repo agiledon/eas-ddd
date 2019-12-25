@@ -16,7 +16,7 @@ public class EmployeeTest {
 
     @Before
     public void setUp() {
-        validName = "zhangyi";
+        validName = "guo jing";
         validIdCard = new IDCard("34052419800101001X");
         validPhone = new Phone("13013220101");
     }

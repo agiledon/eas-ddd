@@ -26,30 +26,30 @@ public class EmployeeIdTest {
 
     @Test
     public void should_generate_employee_id_given_sequence_no() {
-        EmployeeId employeeId = employee.idFrom("0101");
+        employee.assignIdFrom("0101");
 
         EmployeeId expected = new EmployeeId("201912240102");
-        assertThat(employeeId).isEqualTo(expected);
-        assertThat(employeeId.sequenceCode()).isEqualTo("0102");
+        assertThat(employee.id()).isEqualTo(expected);
+        assertThat(employee.id().sequenceCode()).isEqualTo("0102");
     }
 
     @Test
     public void should_throw_InvalidEmployeeIdException_given_empty_sequence_no() {
-        assertThatThrownBy(() -> employee.idFrom(""))
+        assertThatThrownBy(() -> employee.assignIdFrom(""))
                 .isInstanceOf(InvalidEmployeeIdException.class)
                 .hasMessageContaining("Invalid sequence code");
     }
 
     @Test
     public void should_throw_InvalidEmployeeIdException_given_invalid_sequence_no() {
-        assertThatThrownBy(() -> employee.idFrom("xyz"))
+        assertThatThrownBy(() -> employee.assignIdFrom("xyz"))
                 .isInstanceOf(InvalidEmployeeIdException.class)
                 .hasMessageContaining("Invalid sequence code");
     }
 
     @Test
     public void should_throw_InvalidEmployeeIdException_given_sequence_no_which_greater_than_and_equal_to_9999() {
-        assertThatThrownBy(() -> employee.idFrom("9999"))
+        assertThatThrownBy(() -> employee.assignIdFrom("9999"))
                 .isInstanceOf(InvalidEmployeeIdException.class)
                 .hasMessageContaining("Invalid max value of sequence code");
     }

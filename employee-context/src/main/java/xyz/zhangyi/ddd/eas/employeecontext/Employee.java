@@ -10,7 +10,8 @@ import java.util.Objects;
 
 public class Employee {
     private static final int MAX_SEQUENCE_NO = 9999;
-    private String name;
+    private EmployeeId id;
+    private final String name;
     private final IDCard idCard;
     private final Phone mobile;
     private final Gender gender;
@@ -26,6 +27,10 @@ public class Employee {
         this.mobile = requireNonNull(mobile, "Mobile Phone should not be null");
         this.gender = idCard.isMale() ? Gender.Male : Gender.Female;
         this.onBoardingDate = onBoardingDate;
+    }
+
+    public EmployeeId id() {
+        return this.id;
     }
 
     public boolean isMale() {
@@ -54,7 +59,7 @@ public class Employee {
         return obj;
     }
 
-    public synchronized EmployeeId idFrom(String sequenceCode) {
+    public synchronized void assignIdFrom(String sequenceCode) {
         if (Strings.isNullOrEmpty(sequenceCode)) {
             throw new InvalidEmployeeIdException("Invalid sequence code.");
         }
@@ -66,7 +71,8 @@ public class Employee {
 
         String currentSequenceCode = Strings.padStart(String.valueOf(sequenceNumber), 4, '0');
         String onBoardingDateCode = onBoardingDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        return new EmployeeId(String.format("%s%s", onBoardingDateCode, currentSequenceCode));
+
+        id = new EmployeeId(String.format("%s%s", onBoardingDateCode, currentSequenceCode));
     }
 
     private int parseSequenceNumber(String sequenceCode) {
