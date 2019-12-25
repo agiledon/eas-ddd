@@ -4,11 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeException;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class EmployeeTest {
-
     private static String validName;
     private static IDCard validIdCard;
     private static Phone validPhone;
@@ -66,10 +67,11 @@ public class EmployeeTest {
     }
 
     @Test
-    public void should_set_correct_female_gender_given_correct_id_card() {
+    public void should_set_correct_female_gender_and_on_boarding_date_given_correct_id_card() {
         IDCard femaleIdCard = new IDCard("510225199011015187");
         Employee employee = new Employee(validName, femaleIdCard, validPhone);
 
         assertThat(employee.isFemale()).isTrue();
+        assertThat(employee.onBoardingDate()).isEqualToIgnoringHours(LocalDateTime.now());
     }
 }
