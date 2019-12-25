@@ -1,11 +1,11 @@
 package xyz.zhangyi.ddd.eas.employeecontext;
 
 import com.google.common.base.Strings;
+import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidDateTimeFormatException;
 import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidIdCardException;
+import xyz.zhangyi.ddd.eas.employeecontext.utils.DateTimes;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,16 +74,16 @@ public class IDCard {
 
         private void validateBirthday() {
             String birthdayPart = this.number.substring(6, 14);
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            LocalDate minDate = LocalDate.of(1900, 1, 1);
+            LocalDate maxDate = LocalDate.now();
+            validateBirthday(birthdayPart, minDate, maxDate);
+        }
+
+        private void validateBirthday(String birthdayPart, LocalDate minDate, LocalDate maxDate) {
             try {
-                LocalDate birthday = LocalDate.parse(birthdayPart, dateFormatter);
-                LocalDate minDate = LocalDate.of(1900, 1, 1);
-                LocalDate maxDate = LocalDate.now();
-                if (birthday.isBefore(minDate) || birthday.isAfter(maxDate)) {
-                    throw new InvalidIdCardException(String.format("%s contains wrong birthday", this.number));
-                }
-            } catch (DateTimeParseException ex) {
-                throw new InvalidIdCardException(String.format("%s contains invalid birthday", this.number), ex);
+                DateTimes.validateFormat(birthdayPart, minDate, maxDate);
+            } catch (InvalidDateTimeFormatException ex) {
+                throw new InvalidIdCardException(ex.getMessage());
             }
         }
 
