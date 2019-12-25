@@ -11,11 +11,19 @@ public class Employee {
     private final Phone mobile;
     private final Gender gender;
 
-    public Employee(String name, IDCard idCard, Phone mobile, Gender gender) {
-        this.name = validateName(name);;
+    public Employee(String name, IDCard idCard, Phone mobile) {
+        this.name = validateName(name);
         this.idCard = requireNonNull(idCard, "ID Card should not be null");
         this.mobile = requireNonNull(mobile, "Mobile Phone should not be null");
-        this.gender = requireNonNull(gender, "Gender should not be null");
+        this.gender = idCard.isMale() ? Gender.Male : Gender.Female;
+    }
+
+    public boolean isMale() {
+        return gender.isMale();
+    }
+
+    public boolean isFemale() {
+        return gender.isFemale();
     }
 
     private String validateName(String name) {

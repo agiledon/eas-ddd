@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeException;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class EmployeeTest {
@@ -25,7 +26,7 @@ public class EmployeeTest {
     public void should_throw_InvalidEmployeeException_if_name_is_null() {
         String name = null;
 
-        assertThatThrownBy(() -> new Employee(name, validIdCard, validPhone, validGender))
+        assertThatThrownBy(() -> new Employee(name, validIdCard, validPhone))
                 .isInstanceOf(InvalidEmployeeException.class)
                 .hasMessageContaining("Name should not be null or empty");
     }
@@ -34,7 +35,7 @@ public class EmployeeTest {
     public void should_throw_InvalidEmployeeException_if_name_is_empty() {
         String name = "";
 
-        assertThatThrownBy(() -> new Employee(name, validIdCard, validPhone, validGender))
+        assertThatThrownBy(() -> new Employee(name, validIdCard, validPhone))
                 .isInstanceOf(InvalidEmployeeException.class)
                 .hasMessageContaining("Name should not be null or empty");
     }
@@ -43,7 +44,7 @@ public class EmployeeTest {
     public void should_throw_InvalidEmployeeException_if_IdCard_is_null() {
         IDCard idCard = null;
 
-        assertThatThrownBy(() -> new Employee(validName, idCard, validPhone, validGender))
+        assertThatThrownBy(() -> new Employee(validName, idCard, validPhone))
                 .isInstanceOf(InvalidEmployeeException.class)
                 .hasMessageContaining("ID Card should not be null");
     }
@@ -52,17 +53,23 @@ public class EmployeeTest {
     public void should_throw_InvalidEmployeeException_if_mobile_phone_is_null() {
         Phone mobile = null;
 
-        assertThatThrownBy(() -> new Employee(validName, validIdCard, mobile, validGender))
+        assertThatThrownBy(() -> new Employee(validName, validIdCard, mobile))
                 .isInstanceOf(InvalidEmployeeException.class)
                 .hasMessageContaining("Mobile Phone should not be null");
     }
 
     @Test
-    public void should_throw_InvalidEmployeeException_if_gender_is_null() {
-        Gender gender = null;
+    public void should_set_correct_male_gender_given_correct_id_card() {
+        Employee employee = new Employee(validName, validIdCard, validPhone);
 
-        assertThatThrownBy(() -> new Employee(validName, validIdCard, validPhone, gender))
-                .isInstanceOf(InvalidEmployeeException.class)
-                .hasMessageContaining("Gender should not be null");
+        assertThat(employee.isMale()).isTrue();
+    }
+
+    @Test
+    public void should_set_correct_female_gender_given_correct_id_card() {
+        IDCard femaleIdCard = new IDCard("510225199011015187");
+        Employee employee = new Employee(validName, femaleIdCard, validPhone);
+
+        assertThat(employee.isFemale()).isTrue();
     }
 }
