@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.employeecontext;
+package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 public enum Gender {
     Male, Female;

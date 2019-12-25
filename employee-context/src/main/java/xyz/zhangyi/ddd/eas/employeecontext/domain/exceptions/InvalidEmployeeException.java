@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.employeecontext.exceptions;
+package xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions;
 
 public class InvalidEmployeeException extends RuntimeException {
     public InvalidEmployeeException() {

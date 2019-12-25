@@ -1,8 +1,8 @@
-package xyz.zhangyi.ddd.eas.employeecontext;
+package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidIdCardException;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidIdCardException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

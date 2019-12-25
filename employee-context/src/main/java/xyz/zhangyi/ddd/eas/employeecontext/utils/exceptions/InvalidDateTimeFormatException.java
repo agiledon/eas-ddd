@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.employeecontext.exceptions;
+package xyz.zhangyi.ddd.eas.employeecontext.utils.exceptions;
 
 public class InvalidDateTimeFormatException extends RuntimeException {
     public InvalidDateTimeFormatException(String message) {

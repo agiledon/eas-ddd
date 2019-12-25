@@ -1,8 +1,12 @@
-package xyz.zhangyi.ddd.eas.employeecontext;
+package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeIdException;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.Employee;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.EmployeeId;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.IDCard;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.Phone;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidEmployeeIdException;
 
 import java.time.LocalDateTime;
 

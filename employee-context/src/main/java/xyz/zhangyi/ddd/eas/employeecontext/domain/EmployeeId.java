@@ -1,7 +1,7 @@
-package xyz.zhangyi.ddd.eas.employeecontext;
+package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 import com.google.common.base.Strings;
-import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeIdException;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidEmployeeIdException;
 
 import java.util.Objects;
 

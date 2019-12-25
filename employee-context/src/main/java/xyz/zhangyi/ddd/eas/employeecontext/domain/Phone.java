@@ -1,6 +1,6 @@
-package xyz.zhangyi.ddd.eas.employeecontext;
+package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
-import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidPhoneNumberException;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidPhoneNumberException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

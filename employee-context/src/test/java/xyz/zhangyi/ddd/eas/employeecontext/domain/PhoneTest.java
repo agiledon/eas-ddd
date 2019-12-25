@@ -1,7 +1,8 @@
-package xyz.zhangyi.ddd.eas.employeecontext;
+package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidPhoneNumberException;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.Phone;
+import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidPhoneNumberException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
