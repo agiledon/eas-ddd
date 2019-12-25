@@ -10,6 +10,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>employee-context</artifactId>
+    <artifactId>attendance-context</artifactId>
 
 </project>
