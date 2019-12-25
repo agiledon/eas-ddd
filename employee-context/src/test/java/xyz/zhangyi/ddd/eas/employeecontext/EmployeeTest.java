@@ -13,14 +13,12 @@ public class EmployeeTest {
     private static String validName;
     private static IDCard validIdCard;
     private static Phone validPhone;
-    private static Gender validGender;
 
     @Before
     public void setUp() {
         validName = "zhangyi";
         validIdCard = new IDCard("34052419800101001X");
         validPhone = new Phone("13013220101");
-        validGender = Gender.Male;
     }
 
     @Test

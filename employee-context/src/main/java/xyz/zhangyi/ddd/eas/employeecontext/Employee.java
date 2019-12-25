@@ -2,11 +2,14 @@ package xyz.zhangyi.ddd.eas.employeecontext;
 
 import com.google.common.base.Strings;
 import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeException;
+import xyz.zhangyi.ddd.eas.employeecontext.exceptions.InvalidEmployeeIdException;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Employee {
+    private static final int MAX_SEQUENCE_NO = 9999;
     private String name;
     private final IDCard idCard;
     private final Phone mobile;
@@ -49,5 +52,30 @@ public class Employee {
             throw new InvalidEmployeeException(errorMessage);
         }
         return obj;
+    }
+
+    public synchronized EmployeeId idFrom(String sequenceCode) {
+        if (Strings.isNullOrEmpty(sequenceCode)) {
+            throw new InvalidEmployeeIdException("Invalid sequence code.");
+        }
+
+        int sequenceNumber = parseSequenceNumber(sequenceCode) + 1;
+        if (sequenceNumber > MAX_SEQUENCE_NO) {
+            throw new InvalidEmployeeIdException("Invalid max value of sequence code.");
+        }
+
+        String currentSequenceCode = Strings.padStart(String.valueOf(sequenceNumber), 4, '0');
+        String onBoardingDateCode = onBoardingDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        return new EmployeeId(String.format("%s%s", onBoardingDateCode, currentSequenceCode));
+    }
+
+    private int parseSequenceNumber(String sequenceCode) {
+        int sequenceNumber;
+        try {
+            sequenceNumber = Integer.parseInt(sequenceCode);
+        } catch (NumberFormatException ex) {
+            throw new InvalidEmployeeIdException("Invalid sequence code.");
+        }
+        return sequenceNumber;
     }
 }
