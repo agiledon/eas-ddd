@@ -4,7 +4,29 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TimeCard {
-    public static TimeCard of(String employeeId, LocalDate workDay, LocalTime startWork, LocalTime endWork) {
-        return null;
+    private LocalDate workDay;
+    private LocalTime startWork;
+    private LocalTime endWork;
+    private WorkTimeRule workTimeRule;
+
+    private TimeCard(LocalDate workDay,
+                     LocalTime startWork,
+                     LocalTime endWork,
+                     WorkTimeRule workTimeRule) {
+        this.workDay = workDay;
+        this.startWork = startWork;
+        this.endWork = endWork;
+        this.workTimeRule = workTimeRule;
+    }
+
+    public static TimeCard of(LocalDate workDay,
+                              LocalTime startWork,
+                              LocalTime endWork,
+                              WorkTimeRule workTimeRule) {
+        return new TimeCard(workDay, startWork, endWork, workTimeRule);
+    }
+
+    public boolean isLate() {
+        return workTimeRule.isLate(startWork);
     }
 }

@@ -8,7 +8,11 @@ public class Attendance {
     public Attendance(String employeeId, LocalDate workDay) {
     }
 
-    public void assureStatus(TimeCard timeCard, Worktime worktime, Leave leave, boolean isHoliday) {
+    public void assureStatus(TimeCard timeCard, Leave leave, boolean isHoliday) {
+        if (timeCard.isLate()) {
+            this.status = AttendanceStatus.Late;
+            return;
+        }
         this.status = AttendanceStatus.Normal;
     }
 
