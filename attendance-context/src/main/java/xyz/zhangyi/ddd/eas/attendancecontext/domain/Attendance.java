@@ -13,45 +13,79 @@ public class Attendance {
     }
 
     public void assureStatus(boolean isHoliday, TimeCard timeCard, Leave leave) {
-        if (isHoliday && invalidTimeCard(timeCard)) {
-            this.status = AttendanceStatus.Holiday;
-            return;
-        }
-        if (isHoliday && timeCard.isValid()) {
-            this.status = AttendanceStatus.Overtime;
-            return;
-        }
-
-        if (!isHoliday && timeCard == null && leave == null) {
-            this.status = AttendanceStatus.Absence;
-            return;
-        }
-
-        if (!isHoliday && timeCard == null) {
-            this.status = leave.attendanceStatus();
-            return;
-        }
-
-        if (timeCard.isLate() && timeCard.isLeaveEarly()) {
-            this.status = AttendanceStatus.LateAndLeaveEarly;
-            return;
-        }
-        if (timeCard.isLate()) {
-            this.status = AttendanceStatus.Late;
-            return;
-        }
-        if (timeCard.isLeaveEarly()) {
-            this.status = AttendanceStatus.LeaveEarly;
-            return;
-        }
-        this.status = AttendanceStatus.Normal;
+        status = withCondition(isHoliday, timeCard, leave).toStatus();
     }
 
-    private boolean invalidTimeCard(TimeCard timeCard) {
-        return timeCard == null || !timeCard.isValid();
+    private Condition withCondition(boolean isHoliday, TimeCard timeCard, Leave leave) {
+        return new Condition(isHoliday, timeCard, leave);
     }
 
     public AttendanceStatus status() {
         return status;
+    }
+
+    private static class Condition {
+        private final boolean isHoliday;
+        private final TimeCard timeCard;
+        private final Leave leave;
+
+        private Condition(boolean isHoliday, TimeCard timeCard, Leave leave) {
+            this.isHoliday = isHoliday;
+            this.timeCard = timeCard;
+            this.leave = leave;
+        }
+
+        private boolean beHoliday() {
+            return isHoliday && (timeCard == null || !timeCard.isValid());
+        }
+
+        private boolean beOvertime() {
+            return isHoliday && timeCard.isValid();
+        }
+
+        private boolean beAbsence() {
+            return !isHoliday && timeCard == null && leave == null;
+        }
+
+        private boolean beLeave() {
+            return !isHoliday && timeCard == null;
+        }
+
+        private boolean beLateAndLeaveEarly() {
+            return timeCard.isLate() && timeCard.isLeaveEarly();
+        }
+
+        private boolean beLate() {
+            return timeCard.isLate();
+        }
+
+        private boolean beLeaveEarly() {
+            return timeCard.isLeaveEarly();
+        }
+
+        private AttendanceStatus toStatus() {
+            if (beHoliday()) {
+                return AttendanceStatus.Holiday;
+            }
+            if (beOvertime()) {
+                return AttendanceStatus.Overtime;
+            }
+            if (beAbsence()) {
+                return AttendanceStatus.Absence;
+            }
+            if (beLeave()) {
+                return leave.attendanceStatus();
+            }
+            if (beLateAndLeaveEarly()) {
+                return AttendanceStatus.LateAndLeaveEarly;
+            }
+            if (beLate()) {
+                return AttendanceStatus.Late;
+            }
+            if (beLeaveEarly()) {
+                return AttendanceStatus.LeaveEarly;
+            }
+            return AttendanceStatus.Normal;
+        }
     }
 }
