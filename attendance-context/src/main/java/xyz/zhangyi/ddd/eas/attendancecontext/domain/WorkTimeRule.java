@@ -22,4 +22,8 @@ public class WorkTimeRule {
     public boolean isLate(LocalTime punchedTime) {
         return punchedTime.isAfter(startWork.plusMinutes(allowableLateMinutes));
     }
+
+    public boolean isLeaveEarly(LocalTime punchedTime) {
+        return punchedTime.isBefore(endWork.minusMinutes(allowableLeaveEarlyMinutes));
+    }
 }

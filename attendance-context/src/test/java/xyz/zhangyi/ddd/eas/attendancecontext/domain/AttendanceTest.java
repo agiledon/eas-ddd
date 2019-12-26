@@ -58,4 +58,33 @@ public class AttendanceTest {
         // then
         assertThat(attendance.status()).isEqualTo(AttendanceStatus.Late);
     }
+
+    @Test
+    public void should_be_LEAVE_EARLY_on_workday_with_time_card_and_be_earlier_than_end_work() {
+        // given
+        LocalTime punchedEndWork = LocalTime.of(5, 44);
+        TimeCard timeCard = TimeCard.of(workDay, startWork, punchedEndWork, workTimeRule);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(timeCard, null, beHoliday);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.LeaveEarly);
+    }
+
+    @Test
+    public void should_be_LATE_AND_LEAVE_EARLY_on_workday_with_time_card_and_be_late_to_start_work_and_earlier_than_end_work() {
+        // given
+        LocalTime punchedStartWork = LocalTime.of(9, 16);
+        LocalTime punchedEndWork = LocalTime.of(5, 44);
+        TimeCard timeCard = TimeCard.of(workDay, punchedStartWork, punchedEndWork, workTimeRule);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(timeCard, null, beHoliday);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.LateAndLeaveEarly);
+    }
 }

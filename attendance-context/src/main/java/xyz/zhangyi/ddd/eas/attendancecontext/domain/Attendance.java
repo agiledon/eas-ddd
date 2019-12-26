@@ -9,8 +9,16 @@ public class Attendance {
     }
 
     public void assureStatus(TimeCard timeCard, Leave leave, boolean isHoliday) {
+        if (timeCard.isLate() && timeCard.isLeaveEarly()) {
+            this.status = AttendanceStatus.LateAndLeaveEarly;
+            return;
+        }
         if (timeCard.isLate()) {
             this.status = AttendanceStatus.Late;
+            return;
+        }
+        if (timeCard.isLeaveEarly()) {
+            this.status = AttendanceStatus.LeaveEarly;
             return;
         }
         this.status = AttendanceStatus.Normal;

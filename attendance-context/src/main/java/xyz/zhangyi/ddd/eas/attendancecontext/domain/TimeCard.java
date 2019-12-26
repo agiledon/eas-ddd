@@ -29,4 +29,8 @@ public class TimeCard {
     public boolean isLate() {
         return workTimeRule.isLate(startWork);
     }
+
+    public boolean isLeaveEarly() {
+        return workTimeRule.isLeaveEarly(endWork);
+    }
 }
