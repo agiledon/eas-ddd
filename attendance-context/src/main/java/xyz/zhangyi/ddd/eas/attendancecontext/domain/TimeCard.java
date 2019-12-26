@@ -33,4 +33,8 @@ public class TimeCard {
     public boolean isLeaveEarly() {
         return workTimeRule.isLeaveEarly(endWork);
     }
+
+    public boolean isValid() {
+        return Math.abs(endWork.getHour() - startWork.getHour()) >= 4;
+    }
 }

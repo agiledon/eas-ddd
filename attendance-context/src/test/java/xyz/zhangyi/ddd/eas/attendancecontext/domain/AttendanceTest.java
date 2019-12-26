@@ -33,13 +33,53 @@ public class AttendanceTest {
     }
 
     @Test
+    public void should_be_HOLIDAY_on_holiday_without_time_card() {
+        // given
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(beHoliday, null, null);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.Holiday);
+    }
+
+    @Test
+    public void should_be_HOLIDAY_on_holiday_with_invalid_time_card() {
+        // given
+        LocalTime punchedStartWork = LocalTime.of(9, 00);
+        LocalTime punchedEndWork = LocalTime.of(12, 59);
+        TimeCard timeCard = TimeCard.of(workDay, punchedStartWork, punchedEndWork, workTimeRule);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(beHoliday, timeCard, null);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.Holiday);
+    }
+
+    @Test
+    public void should_be_OVERTIME_on_holiday_with_valid_time_card() {
+        // given
+        TimeCard timeCard = TimeCard.of(workDay, startWork, endWork, workTimeRule);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(beHoliday, timeCard, null);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.Overtime);
+    }
+
+    @Test
     public void should_be_NORMAL_on_workday_with_time_card() {
         // given
         TimeCard timeCard = TimeCard.of(workDay, startWork, endWork, workTimeRule);
         Attendance attendance = new Attendance(employeeId, workDay);
 
         // when
-        attendance.assureStatus(timeCard, null, beHoliday);
+        attendance.assureStatus(notHoliday, timeCard, null);
 
         // then
         assertThat(attendance.status()).isEqualTo(AttendanceStatus.Normal);
@@ -53,7 +93,7 @@ public class AttendanceTest {
         Attendance attendance = new Attendance(employeeId, workDay);
 
         // when
-        attendance.assureStatus(timeCard, null, beHoliday);
+        attendance.assureStatus(notHoliday, timeCard, null);
 
         // then
         assertThat(attendance.status()).isEqualTo(AttendanceStatus.Late);
@@ -67,7 +107,7 @@ public class AttendanceTest {
         Attendance attendance = new Attendance(employeeId, workDay);
 
         // when
-        attendance.assureStatus(timeCard, null, beHoliday);
+        attendance.assureStatus(notHoliday, timeCard, null);
 
         // then
         assertThat(attendance.status()).isEqualTo(AttendanceStatus.LeaveEarly);
@@ -82,9 +122,35 @@ public class AttendanceTest {
         Attendance attendance = new Attendance(employeeId, workDay);
 
         // when
-        attendance.assureStatus(timeCard, null, beHoliday);
+        attendance.assureStatus(notHoliday, timeCard, null);
 
         // then
         assertThat(attendance.status()).isEqualTo(AttendanceStatus.LateAndLeaveEarly);
+    }
+
+    @Test
+    public void should_be_LEAVE_on_workday_without_time_card_and_with_leave() {
+        // given
+        LocalDate askLeaveDay = LocalDate.of(2019, 12, 22);
+        Leave leave = Leave.of(employeeId, askLeaveDay, LeaveType.Sick);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(notHoliday, null, leave);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.SickLeave);
+    }
+
+    @Test
+    public void should_be_ABSENCE_on_workday_without_time_card_and_leave() {
+        // given
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        // when
+        attendance.assureStatus(notHoliday, null, null);
+
+        // then
+        assertThat(attendance.status()).isEqualTo(AttendanceStatus.Absence);
     }
 }
