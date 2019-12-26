@@ -1,6 +1,8 @@
 package xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions;
 
-public class InvalidEmployeeIdException extends RuntimeException {
+import xyz.zhangyi.ddd.eas.core.domain.DomainException;
+
+public class InvalidEmployeeIdException extends DomainException {
     public InvalidEmployeeIdException(String message) {
         super(message);
     }

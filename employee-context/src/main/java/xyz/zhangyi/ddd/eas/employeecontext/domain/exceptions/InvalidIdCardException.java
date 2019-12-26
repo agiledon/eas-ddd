@@ -1,6 +1,8 @@
 package xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions;
 
-public class InvalidIdCardException extends RuntimeException {
+import xyz.zhangyi.ddd.eas.core.domain.DomainException;
+
+public class InvalidIdCardException extends DomainException {
     public InvalidIdCardException(String message) {
         super(message);
     }

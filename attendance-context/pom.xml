@@ -12,4 +12,11 @@
 
     <artifactId>attendance-context</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>xyz.zhangyi.ddd</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

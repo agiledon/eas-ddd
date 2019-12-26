@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>core</module>
         <module>employee-context</module>
         <module>attendance-context</module>
     </modules>
