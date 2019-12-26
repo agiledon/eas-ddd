@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.attendancecontext.domain;
 
+import xyz.zhangyi.ddd.eas.attendancecontext.domain.exceptions.InvalidAttendanceException;
+
 import java.time.LocalDate;
 
 public class Attendance {
@@ -17,6 +19,13 @@ public class Attendance {
     }
 
     private Condition withCondition(boolean isHoliday, TimeCard timeCard, Leave leave) {
+        if (timeCard != null && !timeCard.sameWorkDay(workDay)) {
+            throw new InvalidAttendanceException("different work day for attendance, time card and leave");
+        }
+        if (leave != null && !leave.sameDay(workDay)) {
+            throw new InvalidAttendanceException("different work day for attendance, time card and leave");
+        }
+
         return new Condition(isHoliday, timeCard, leave);
     }
 

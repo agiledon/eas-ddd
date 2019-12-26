@@ -20,4 +20,8 @@ public class Leave {
     public AttendanceStatus attendanceStatus() {
         return leaveType.toAttendanceStatus();
     }
+
+    public boolean sameDay(LocalDate workDay) {
+        return askLeaveDay.isEqual(workDay);
+    }
 }

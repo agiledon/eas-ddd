@@ -2,11 +2,13 @@ package xyz.zhangyi.ddd.eas.attendancecontext.domain;
 
 import org.junit.Before;
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.attendancecontext.domain.exceptions.InvalidAttendanceException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AttendanceTest {
     private LocalDate workDay;
@@ -152,5 +154,28 @@ public class AttendanceTest {
 
         // then
         assertThat(attendance.status()).isEqualTo(AttendanceStatus.Absence);
+    }
+
+
+    @Test
+    public void should_throw_InvalidAttendanceException_given_time_card_with_different_workday() {
+        LocalDate anotherWorkDay = LocalDate.of(2019, 12, 25);
+        TimeCard timeCard = TimeCard.of(anotherWorkDay, startWork, endWork, workTimeRule);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        assertThatThrownBy(() -> attendance.assureStatus(notHoliday, timeCard, null))
+                .isInstanceOf(InvalidAttendanceException.class)
+                .hasMessageContaining("different work day for attendance, time card and leave");
+    }
+
+    @Test
+    public void should_throw_InvalidAttendanceException_given_leave_with_different_workday() {
+        LocalDate anotherWorkDay = LocalDate.of(2019, 12, 25);
+        Leave leave = Leave.of(employeeId, anotherWorkDay, LeaveType.Sick);
+        Attendance attendance = new Attendance(employeeId, workDay);
+
+        assertThatThrownBy(() -> attendance.assureStatus(notHoliday, null, leave))
+                .isInstanceOf(InvalidAttendanceException.class)
+                .hasMessageContaining("different work day for attendance, time card and leave");
     }
 }

@@ -37,4 +37,8 @@ public class TimeCard {
     public boolean isValid() {
         return Math.abs(endWork.getHour() - startWork.getHour()) >= 4;
     }
+
+    public boolean sameWorkDay(LocalDate workDay) {
+        return this.workDay.isEqual(workDay);
+    }
 }
