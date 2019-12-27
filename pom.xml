@@ -13,6 +13,7 @@
         <module>core</module>
         <module>employee-context</module>
         <module>attendance-context</module>
+        <module>project-context</module>
     </modules>
 
     <properties>
