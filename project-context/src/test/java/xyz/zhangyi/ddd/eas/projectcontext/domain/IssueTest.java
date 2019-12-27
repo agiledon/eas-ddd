@@ -2,33 +2,26 @@ package xyz.zhangyi.ddd.eas.projectcontext.domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.AssignmentIssueException;
-
+import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class IssueTest {
+import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.AssignmentIssueException;
 
+public class IssueTest {
     private IssueId issueId;
     private String name;
     private String description;
     private String ownerId;
+    private String operatorId;
 
     @Before
     public void setUp() {
-        issueId = IssueId.next();
+        issueId = new IssueId("#1");
         name = "test issue";
         description = "description";
         ownerId = "200901010110";
-    }
-
-    @Test
-    public void should_assign_to_specific_owner() {
-        Issue issue = Issue.of(issueId, name, description);
-
-        issue.assignTo(ownerId);
-
-        assertThat(issue.ownerId()).isEqualTo(ownerId);
+        operatorId = "200001010007";
     }
 
     @Test
@@ -50,11 +43,24 @@ public class IssueTest {
     }
 
     @Test
+    public void should_assign_to_specific_owner_and_generate_change_history() {
+        Issue issue = Issue.of(issueId, name, description);
+
+        ChangeHistory history = issue.assignTo(ownerId, operatorId);
+
+        assertThat(issue.ownerId()).isEqualTo(ownerId);
+        assertThat(history.issueId()).isEqualTo(issueId.id());
+        assertThat(history.operatedBy()).isEqualTo(operatorId);
+        assertThat(history.operation()).isEqualTo(Operation.Assignment);
+        assertThat(history.operatedAt()).isEqualToIgnoringSeconds(LocalDateTime.now());
+    }
+
+    @Test
     public void should_throw_AssignmentIssueException_when_assign_resolved_issue() {
         Issue issue = Issue.of(issueId, name, description);
         issue.changeStatusTo(IssueStatus.Resolved);
 
-        assertThatThrownBy(() -> issue.assignTo(ownerId))
+        assertThatThrownBy(() -> issue.assignTo(ownerId, operatorId))
                 .isInstanceOf(AssignmentIssueException.class)
                 .hasMessageContaining("resolved issue can not be assigned");
     }
@@ -64,7 +70,7 @@ public class IssueTest {
         Issue issue = Issue.of(issueId, name, description);
         issue.changeStatusTo(IssueStatus.Closed);
 
-        assertThatThrownBy(() -> issue.assignTo(ownerId))
+        assertThatThrownBy(() -> issue.assignTo(ownerId, operatorId))
                 .isInstanceOf(AssignmentIssueException.class)
                 .hasMessageContaining("closed issue can not be assigned");
     }
@@ -72,9 +78,9 @@ public class IssueTest {
     @Test
     public void should_throw_AssignmentIssueException_when_issue_is_assigned_to_same_owner() {
         Issue issue = Issue.of(issueId, name, description);
-        issue.assignTo(ownerId);
+        issue.assignTo(ownerId, operatorId);
 
-        assertThatThrownBy(() -> issue.assignTo(ownerId))
+        assertThatThrownBy(() -> issue.assignTo(ownerId, operatorId))
                 .isInstanceOf(AssignmentIssueException.class)
                 .hasMessageContaining("issue can not be assign to same owner again");
     }
@@ -83,7 +89,7 @@ public class IssueTest {
     public void should_throw_AssignmentIssueException_when_passed_ownerId_is_null() {
         Issue issue = Issue.of(issueId, name, description);
 
-        assertThatThrownBy(() -> issue.assignTo(null))
+        assertThatThrownBy(() -> issue.assignTo(null, operatorId))
                 .isInstanceOf(AssignmentIssueException.class)
                 .hasMessageContaining("owner id is null");
     }
@@ -92,7 +98,7 @@ public class IssueTest {
     public void should_throw_AssignmentIssueException_when_passed_ownerId_is_empty() {
         Issue issue = Issue.of(issueId, name, description);
 
-        assertThatThrownBy(() -> issue.assignTo(""))
+        assertThatThrownBy(() -> issue.assignTo("", operatorId))
                 .isInstanceOf(AssignmentIssueException.class)
                 .hasMessageContaining("owner id is null");
     }

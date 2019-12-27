@@ -1,7 +1,13 @@
 package xyz.zhangyi.ddd.eas.projectcontext.domain;
 
 public class IssueId {
-    public static IssueId next() {
+    private String id;
+
+    public IssueId(String id) {
+        this.id = id;
+    }
+
+    public String id() {
         return null;
     }
 }

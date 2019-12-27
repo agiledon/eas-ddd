@@ -2,6 +2,7 @@ package xyz.zhangyi.ddd.eas.projectcontext.domain;
 
 import com.google.common.base.Strings;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.AssignmentIssueException;
+import java.time.LocalDateTime;
 
 public class Issue {
     private IssueId issueId;
@@ -21,9 +22,12 @@ public class Issue {
         return new Issue(issueId, name, description);
     }
 
-    public void assignTo(String ownerId) {
+    public ChangeHistory assignTo(String ownerId, String operatorId) {
         if (Strings.isNullOrEmpty(ownerId)) {
             throw new AssignmentIssueException("owner id is null or empty.");
+        }
+        if (Strings.isNullOrEmpty(operatorId)) {
+            throw new AssignmentIssueException("operator id is null or empty.");
         }
         if (status.isResolved()) {
             throw new AssignmentIssueException("resolved issue can not be assigned.");
@@ -35,6 +39,11 @@ public class Issue {
             throw new AssignmentIssueException("issue can not be assign to same owner again.");
         }
         this.ownerId = ownerId;
+        return ChangeHistory
+                .operate(Operation.Assignment)
+                .to(issueId.id())
+                .by(operatorId)
+                .at(LocalDateTime.now());
     }
 
     public String ownerId() {
