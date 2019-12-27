@@ -23,12 +23,6 @@ public class Issue {
     }
 
     public ChangeHistory assignTo(String ownerId, String operatorId) {
-        if (Strings.isNullOrEmpty(ownerId)) {
-            throw new AssignmentIssueException("owner id is null or empty.");
-        }
-        if (Strings.isNullOrEmpty(operatorId)) {
-            throw new AssignmentIssueException("operator id is null or empty.");
-        }
         if (status.isResolved()) {
             throw new AssignmentIssueException("resolved issue can not be assigned.");
         }

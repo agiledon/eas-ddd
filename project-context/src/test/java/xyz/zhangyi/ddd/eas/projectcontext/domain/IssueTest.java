@@ -84,22 +84,4 @@ public class IssueTest {
                 .isInstanceOf(AssignmentIssueException.class)
                 .hasMessageContaining("issue can not be assign to same owner again");
     }
-
-    @Test
-    public void should_throw_AssignmentIssueException_when_passed_ownerId_is_null() {
-        Issue issue = Issue.of(issueId, name, description);
-
-        assertThatThrownBy(() -> issue.assignTo(null, operatorId))
-                .isInstanceOf(AssignmentIssueException.class)
-                .hasMessageContaining("owner id is null");
-    }
-
-    @Test
-    public void should_throw_AssignmentIssueException_when_passed_ownerId_is_empty() {
-        Issue issue = Issue.of(issueId, name, description);
-
-        assertThatThrownBy(() -> issue.assignTo("", operatorId))
-                .isInstanceOf(AssignmentIssueException.class)
-                .hasMessageContaining("owner id is null");
-    }
 }
