@@ -1,6 +1,8 @@
-package xyz.zhangyi.ddd.eas.projectcontext.domain;
+package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 
-import com.google.common.base.Strings;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistory;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operation;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operator;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.AssignmentIssueException;
 import java.time.LocalDateTime;
 

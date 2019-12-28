@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.projectcontext.domain;
+package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 
 public enum IssueStatus {
     Resolved, Open, Closed;

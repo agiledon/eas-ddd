@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.projectcontext.domain;
+package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 
 public class IssueOwner {
     private String ownerId;

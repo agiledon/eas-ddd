@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.projectcontext.domain;
+package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistory;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operation;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operator;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.AssignmentIssueException;
 
 public class IssueTest {
