@@ -13,14 +13,14 @@ import static org.mockito.Mockito.*;
 public class IssueServiceTest {
 
     private IssueId issueId;
-    private String operatorId;
+    private Operator operator;
     private IssueService issueService;
     private IssueOwner owner;
 
     @Before
     public void setUp() {
         issueId = new IssueId("#1");
-        operatorId = "200010100007";
+        operator = new Operator("200010100007", "admin");
         issueService = new IssueService();
         owner = new IssueOwner("200901010111", "zhangyi", "zhangyi@eas.com");
     }
@@ -36,7 +36,7 @@ public class IssueServiceTest {
         ChangeHistoryRepository changeHistoryRepo = mock(ChangeHistoryRepository.class);
         issueService.setChangeHistoryRepository(changeHistoryRepo);
 
-        issueService.assign(issueId, owner, operatorId);
+        issueService.assign(issueId, owner, operator);
 
         assertThat(issue.ownerId()).isEqualTo(owner.id());
         verify(issueRepo).issueOf(issueId);
@@ -53,7 +53,7 @@ public class IssueServiceTest {
         ChangeHistoryRepository changeHistoryRepo = mock(ChangeHistoryRepository.class);
         issueService.setChangeHistoryRepository(changeHistoryRepo);
 
-        assertThatThrownBy(() -> issueService.assign(issueId, owner, operatorId))
+        assertThatThrownBy(() -> issueService.assign(issueId, owner, operator))
                 .isInstanceOf(IssueException.class)
                 .hasMessageContaining("issue")
                 .hasMessageContaining("not found");

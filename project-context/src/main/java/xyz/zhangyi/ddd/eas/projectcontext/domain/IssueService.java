@@ -8,12 +8,12 @@ public class IssueService {
     private IssueRepository issueRepo;
     private ChangeHistoryRepository changeHistoryRepo;
 
-    public void assign(IssueId issueId, IssueOwner owner, String operatorId) {
+    public void assign(IssueId issueId, IssueOwner owner, Operator operator) {
         Optional<Issue> optIssue = issueRepo.issueOf(issueId);
         Issue issue = optIssue.orElseThrow(
                 () -> new IssueException(String.format("issue with id {%s} was not found", issueId.id())));
 
-        ChangeHistory changeHistory = issue.assignTo(owner.id(), operatorId);
+        ChangeHistory changeHistory = issue.assignTo(owner, operator);
 
         issueRepo.update(issue);
         changeHistoryRepo.add(changeHistory);

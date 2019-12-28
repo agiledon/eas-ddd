@@ -6,7 +6,7 @@ public class ChangeHistory {
     private ChangeHistoryId changeHistoryId;
     private Operation operation;
     private String issueId;
-    private String operatedBy;
+    private Operator operatedBy;
     private LocalDateTime operatedAt;
 
     public ChangeHistory(Operation operation) {
@@ -22,7 +22,7 @@ public class ChangeHistory {
         return this.issueId;
     }
 
-    public String operatedBy() {
+    public Operator operatedBy() {
         return this.operatedBy;
     }
 
@@ -39,8 +39,8 @@ public class ChangeHistory {
         return this;
     }
 
-    public ChangeHistory by(String operatorId) {
-        this.operatedBy = operatorId;
+    public ChangeHistory by(Operator operator) {
+        this.operatedBy = operator;
         return this;
     }
 

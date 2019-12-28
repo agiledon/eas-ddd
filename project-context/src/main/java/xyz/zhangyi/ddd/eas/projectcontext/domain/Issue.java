@@ -22,21 +22,21 @@ public class Issue {
         return new Issue(issueId, name, description);
     }
 
-    public ChangeHistory assignTo(String ownerId, String operatorId) {
+    public ChangeHistory assignTo(IssueOwner owner, Operator operator) {
         if (status.isResolved()) {
             throw new AssignmentIssueException("resolved issue can not be assigned.");
         }
         if (status.isClosed()) {
             throw new AssignmentIssueException("closed issue can not be assigned.");
         }
-        if (this.ownerId != null && this.ownerId.equals(ownerId)) {
+        if (this.ownerId != null && this.ownerId.equals(owner.id())) {
             throw new AssignmentIssueException("issue can not be assign to same owner again.");
         }
-        this.ownerId = ownerId;
+        this.ownerId = owner.id();
         return ChangeHistory
                 .operate(Operation.Assignment)
                 .to(issueId.id())
-                .by(operatorId)
+                .by(operator)
                 .at(LocalDateTime.now());
     }
 
