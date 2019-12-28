@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.projectcontext.domain;
 
+import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.IssueException;
+
 import java.util.Optional;
 
 public class IssueService {
@@ -8,7 +10,8 @@ public class IssueService {
 
     public void assign(IssueId issueId, IssueOwner owner, String operatorId) {
         Optional<Issue> optIssue = issueRepo.issueOf(issueId);
-        Issue issue = optIssue.get();
+        Issue issue = optIssue.orElseThrow(
+                () -> new IssueException(String.format("issue with id {%s} was not found", issueId.id())));
 
         ChangeHistory changeHistory = issue.assignTo(owner.id(), operatorId);
 
