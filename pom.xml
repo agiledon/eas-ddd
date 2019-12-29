@@ -14,6 +14,7 @@
         <module>employee-context</module>
         <module>attendance-context</module>
         <module>project-context</module>
+        <module>training-context</module>
     </modules>
 
     <properties>

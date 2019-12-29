@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 public class IssueServiceTest {
-
     private IssueId issueId;
     private Operator operator;
     private IssueService issueService;
