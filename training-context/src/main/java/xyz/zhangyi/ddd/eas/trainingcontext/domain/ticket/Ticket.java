@@ -8,6 +8,11 @@ public class Ticket {
     private TicketId ticketId;
     private String trainingId;
     private TicketStatus ticketStatus;
+    private String nomineeId;
+
+    public Ticket(TicketId ticketId, String trainingId) {
+        this(ticketId, trainingId, TicketStatus.Available);
+    }
 
     public Ticket(TicketId ticketId, String trainingId, TicketStatus ticketStatus) {
         this.ticketId = ticketId;
@@ -19,6 +24,18 @@ public class Ticket {
         if (!ticketStatus.isAvailable()) {
             throw new TicketException("ticket is not available, cannot be nominated.");
         }
+
+        this.ticketStatus = TicketStatus.WaitForConfirm;
+        this.nomineeId = candidate.employeeId();
+
         return null;
+    }
+
+    public TicketStatus status() {
+        return ticketStatus;
+    }
+
+    public String nomineeId() {
+        return nomineeId;
     }
 }
