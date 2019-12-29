@@ -23,19 +23,33 @@ public class Ticket {
     }
 
     public TicketHistory nominate(Candidate candidate, Nominator nominator) {
+        validateTicketStatus();
+        doNomination(candidate);
+        return generateHistory(candidate, nominator);
+    }
+
+    private void validateTicketStatus() {
         if (!ticketStatus.isAvailable()) {
             throw new TicketException("ticket is not available, cannot be nominated.");
         }
+    }
 
+    private void doNomination(Candidate candidate) {
         this.ticketStatus = TicketStatus.WaitForConfirm;
         this.nomineeId = candidate.employeeId();
+    }
 
+    private TicketHistory generateHistory(Candidate candidate, Nominator nominator) {
         return new TicketHistory(ticketId,
-                new TicketOwner(candidate.employeeId(), TicketOwnerType.Nominee),
-                StateTransit.from(TicketStatus.Available).to(this.ticketStatus),
+                candidate.toOwner(),
+                transitState(),
                 OperationType.Nomination,
-                new Operator(nominator.employeeId(), nominator.name()),
+                nominator.toOperator(),
                 LocalDateTime.now());
+    }
+
+    private StateTransit transitState() {
+        return StateTransit.from(TicketStatus.Available).to(this.ticketStatus);
     }
 
     public TicketStatus status() {

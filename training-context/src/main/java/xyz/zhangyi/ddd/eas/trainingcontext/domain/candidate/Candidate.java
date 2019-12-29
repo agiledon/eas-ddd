@@ -1,5 +1,8 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate;
 
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketOwner;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketOwnerType;
+
 public class Candidate {
     private String employeeId;
     private String name;
@@ -15,5 +18,9 @@ public class Candidate {
 
     public String employeeId() {
         return employeeId;
+    }
+
+    public TicketOwner toOwner() {
+        return new TicketOwner(employeeId(), TicketOwnerType.Nominee);
     }
 }

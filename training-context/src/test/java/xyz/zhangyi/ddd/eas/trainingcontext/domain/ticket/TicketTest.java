@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class TicketTest {
-
     private String trainingId;
     private Candidate candidate;
     private Nominator nominator;
@@ -46,9 +45,11 @@ public class TicketTest {
     @Test
     public void should_generate_ticket_history_after_ticket_was_nominated() {
         Ticket ticket = new Ticket(TicketId.next(), trainingId);
-
         TicketHistory ticketHistory = ticket.nominate(candidate, nominator);
+        assertTicketHistory(ticket, ticketHistory);
+    }
 
+    private void assertTicketHistory(Ticket ticket, TicketHistory ticketHistory) {
         assertThat(ticketHistory.ticketId()).isEqualTo(ticket.id());
         assertThat(ticketHistory.operationType()).isEqualTo(OperationType.Nomination);
         assertThat(ticketHistory.owner()).isEqualTo(new TicketOwner(candidate.employeeId(), TicketOwnerType.Nominee));

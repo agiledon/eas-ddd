@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket;
 
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.Operator;
+
 public class Nominator {
     private String employeeId;
     private String name;
@@ -19,5 +21,9 @@ public class Nominator {
 
     public String name() {
         return this.name;
+    }
+
+    public Operator toOperator() {
+        return new Operator(employeeId(), name());
     }
 }
