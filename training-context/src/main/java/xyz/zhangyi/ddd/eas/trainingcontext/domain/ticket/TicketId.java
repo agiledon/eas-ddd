@@ -14,6 +14,10 @@ public class TicketId {
         return new TicketId(UUID.randomUUID().toString());
     }
 
+    public String id() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -25,5 +29,10 @@ public class TicketId {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return id;
     }
 }
