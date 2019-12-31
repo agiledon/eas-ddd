@@ -1,9 +1,9 @@
-package xyz.zhangyi.ddd.eas.trainingcontext.learning;
+package xyz.zhangyi.ddd.eas.trainingcontext.domain.learning;
 
-import xyz.zhangyi.ddd.eas.trainingcontext.training.Training;
-import xyz.zhangyi.ddd.eas.trainingcontext.training.TrainingException;
-import xyz.zhangyi.ddd.eas.trainingcontext.training.TrainingId;
-import xyz.zhangyi.ddd.eas.trainingcontext.training.TrainingRepository;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingException;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository;
 
 import java.util.Optional;
 

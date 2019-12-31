@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.trainingcontext.training;
+package xyz.zhangyi.ddd.eas.trainingcontext.domain.training;
 
 import xyz.zhangyi.ddd.eas.core.domain.DomainException;
 
