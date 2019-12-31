@@ -22,7 +22,7 @@ public class LearningService {
     public boolean beLearned(String candidateId, String trainingId) {
         Optional<Training> optionalTraining = trainingRepo.trainingOf(TrainingId.from(trainingId));
         if (!optionalTraining.isPresent())
-            throw new TrainingException(String.format("training by id {%} can not be found.", trainingId));
+            throw new TrainingException(String.format("training by id {%s} can not be found.", trainingId));
 
         Training training = optionalTraining.get();
         return learningRepo.exists(candidateId, training.courseId());
