@@ -67,4 +67,8 @@ public class Ticket {
     public String url() {
         return String.format("http://www.eas.com/eas/tickets/%s", this.id().value());
     }
+
+    public String trainingId() {
+        return trainingId;
+    }
 }

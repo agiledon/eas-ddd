@@ -1,6 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.training;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class TrainingId {
     private String id;
@@ -11,6 +12,14 @@ public class TrainingId {
 
     public static TrainingId from(String id) {
         return new TrainingId(id);
+    }
+
+    public static TrainingId next() {
+        return new TrainingId(UUID.randomUUID().toString());
+    }
+
+    public String value() {
+        return this.id;
     }
 
     @Override
