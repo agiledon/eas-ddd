@@ -63,4 +63,8 @@ public class Ticket {
     public TicketId id() {
         return this.ticketId;
     }
+
+    public String url() {
+        return String.format("http://www.eas.com/eas/tickets/%s", this.id().value());
+    }
 }

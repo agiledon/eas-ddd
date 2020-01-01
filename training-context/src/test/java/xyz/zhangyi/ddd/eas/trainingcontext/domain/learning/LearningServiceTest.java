@@ -7,6 +7,7 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,7 +30,9 @@ public class LearningServiceTest {
 
     @Test
     public void should_return_true_if_candidate_is_in_learn_list() {
-        Training training = new Training(courseId);
+        LocalDateTime beginTime = LocalDateTime.of(2020, 1, 8, 9, 0);
+        LocalDateTime endTime = LocalDateTime.of(2020, 1, 9, 17, 0);
+        Training training = new Training(trainingId, "ddd", "ddd training", beginTime, endTime, "London Room", courseId);
 
         TrainingRepository mockTrainingRepo = mock(TrainingRepository.class);
         when(mockTrainingRepo.trainingOf(trainingId)).thenReturn(Optional.of(training));

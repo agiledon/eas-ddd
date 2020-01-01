@@ -4,18 +4,18 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class TicketId {
-    private String id;
+    private String value;
 
-    private TicketId(String id) {
-        this.id = id;
+    private TicketId(String value) {
+        this.value = value;
     }
 
     public static TicketId next() {
         return new TicketId(UUID.randomUUID().toString());
     }
 
-    public String id() {
-        return id;
+    public String value() {
+        return value;
     }
 
     @Override
@@ -23,16 +23,16 @@ public class TicketId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TicketId ticketId = (TicketId) o;
-        return id.equals(ticketId.id);
+        return value.equals(ticketId.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
-        return id;
+        return value;
     }
 }

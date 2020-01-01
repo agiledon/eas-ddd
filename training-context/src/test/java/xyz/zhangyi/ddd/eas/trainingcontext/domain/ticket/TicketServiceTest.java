@@ -29,7 +29,7 @@ public class TicketServiceTest {
 
         assertThatThrownBy(() -> ticketService.nominate(ticketId, candidate, nominator))
                 .isInstanceOf(TicketException.class)
-                .hasMessageContaining(String.format("available ticket by id {%s} is not found", ticketId.id()));
+                .hasMessageContaining(String.format("available ticket by id {%s} is not found", ticketId.value()));
         verify(mockTickRepo).ticketOf(ticketId, Available);
     }
 
