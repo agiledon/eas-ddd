@@ -32,6 +32,10 @@ public class MailTemplateTest {
         assertThat(notification.from()).isEqualTo("admin@eas.com");
         assertThat(notification.to()).isEqualTo(nominee.email());
         assertThat(notification.subject()).isEqualTo("Ticket Nomination Notification");
+        assertNotificationBody(nominator, nominee, validDate, training, ticket, notification);
+    }
+
+    private void assertNotificationBody(Nominator nominator, Nominee nominee, ValidDate validDate, Training training, Ticket ticket, Notification notification) {
         assertThat(notification.body()).containsIgnoringCase(String.format("Hi %s:", nominee.name()));
         assertThat(notification.body()).containsIgnoringCase(String.format("you are nominated by %s to attend the training", nominator.name()));
         assertThat(notification.body()).containsIgnoringCase(String.format("the deadline %s", validDate.deadline()));
