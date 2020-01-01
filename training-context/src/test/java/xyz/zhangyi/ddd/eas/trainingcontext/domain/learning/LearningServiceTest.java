@@ -2,6 +2,7 @@ package xyz.zhangyi.ddd.eas.trainingcontext.domain.learning;
 
 import org.junit.Before;
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
@@ -15,17 +16,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 public class LearningServiceTest {
-    private String trainingIdValue;
     private TrainingId trainingId;
     private String candidateId;
-    private String courseId;
+    private CourseId courseId;
 
     @Before
     public void setUp() throws Exception {
-        trainingIdValue = "111011111111";
-        trainingId = TrainingId.from(trainingIdValue);
+        trainingId = TrainingId.next();
         candidateId = "200901010010";
-        courseId = "111111111111";
+        courseId = CourseId.next();
     }
 
     @Test
@@ -44,7 +43,7 @@ public class LearningServiceTest {
         learningService.setTrainingRepository(mockTrainingRepo);
         learningService.setLearningRepository(mockLearningRepo);
 
-        boolean beLearned = learningService.beLearned(candidateId, trainingIdValue);
+        boolean beLearned = learningService.beLearned(candidateId, trainingId);
 
         assertThat(beLearned).isTrue();
         verify(mockTrainingRepo).trainingOf(trainingId);
@@ -62,7 +61,7 @@ public class LearningServiceTest {
         learningService.setTrainingRepository(mockTrainingRepo);
         learningService.setLearningRepository(mockLearningRepo);
 
-        assertThatThrownBy(() -> learningService.beLearned(candidateId, trainingIdValue))
+        assertThatThrownBy(() -> learningService.beLearned(candidateId, trainingId))
                 .isInstanceOf(TrainingException.class)
         .hasMessageContaining(String.format("training by id {%s} can not be found", trainingId));
 

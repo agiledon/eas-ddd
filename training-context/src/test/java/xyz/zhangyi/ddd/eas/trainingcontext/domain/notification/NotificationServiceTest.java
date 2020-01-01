@@ -1,6 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.notification;
 
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.*;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
@@ -26,7 +27,7 @@ public class NotificationServiceTest {
         Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
         Nominee nominee = new Nominee("200910100111", "bruce", "bruce@email.com");
 
-        String courseId = "111111111111";
+        CourseId courseId = CourseId.next();
         LocalDateTime beginTime = LocalDateTime.of(2020, 1, 8, 9, 0);
         LocalDateTime endTime = LocalDateTime.of(2020, 1, 9, 17, 0);
         String place = "London Room";

@@ -19,8 +19,8 @@ public class LearningService {
         this.learningRepo = learningRepo;
     }
 
-    public boolean beLearned(String candidateId, String trainingId) {
-        Optional<Training> optionalTraining = trainingRepo.trainingOf(TrainingId.from(trainingId));
+    public boolean beLearned(String candidateId, TrainingId trainingId) {
+        Optional<Training> optionalTraining = trainingRepo.trainingOf(trainingId);
         if (!optionalTraining.isPresent())
             throw new TrainingException(String.format("training by id {%s} can not be found.", trainingId));
 

@@ -1,6 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.notification;
 
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.*;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
@@ -79,12 +80,12 @@ public class MailTemplateTest {
     }
 
     private Training createTraining() {
-        String trainingId = "111111111111";
-        String courseId = "111111111111";
+        TrainingId trainingId = TrainingId.next();
+        CourseId courseId = CourseId.next();
         LocalDateTime beginTime = LocalDateTime.of(2020, 1, 8, 9, 0);
         LocalDateTime endTime = LocalDateTime.of(2020, 1, 9, 17, 0);
         String place = "London Room";
-        return new Training(TrainingId.from(trainingId), "ddd", "ddd training", beginTime, endTime, place, courseId);
+        return new Training(trainingId, "ddd", "ddd training", beginTime, endTime, place, courseId);
     }
 
     private ValidDate createValidDate() {

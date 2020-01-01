@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.training;
 
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
+
 import java.time.LocalDateTime;
 
 public class Training {
@@ -9,9 +11,9 @@ public class Training {
     private LocalDateTime beginTime;
     private LocalDateTime endTime;
     private String place;
-    private String courseId;
+    private CourseId courseId;
 
-    public Training(TrainingId id, String title, String description, LocalDateTime beginTime, LocalDateTime endTime, String place, String courseId) {
+    public Training(TrainingId id, String title, String description, LocalDateTime beginTime, LocalDateTime endTime, String place, CourseId courseId) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -21,7 +23,7 @@ public class Training {
         this.courseId = courseId;
     }
 
-    public String courseId() {
+    public CourseId courseId() {
         return courseId;
     }
 
