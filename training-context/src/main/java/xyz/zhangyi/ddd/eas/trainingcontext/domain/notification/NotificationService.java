@@ -21,29 +21,32 @@ public class NotificationService {
     private ValidDateRepository validDateRepository;
 
     public void notifyNominee(Ticket ticket, Nominator nominator, Nominee nominee) {
-        Optional<MailTemplate> optionalMailTemplate = templateRepository.templateOf(TemplateType.Nomination);
-        if (!optionalMailTemplate.isPresent()) {
-            throw new MailTemplateException(String.format("mail template by %s was not found.", TemplateType.Nomination));
-        }
-        MailTemplate mailTemplate = optionalMailTemplate.get();
-
-        Optional<Training> optionalTraining = trainingRepository.trainingOf(ticket.trainingId());
-        if (!optionalTraining.isPresent()) {
-            throw new TrainingException(String.format("training by id {%s} was not found.", ticket.trainingId()));
-        }
-
-        Optional<ValidDate> optionalValidDate = validDateRepository.validDateOf(ticket.trainingId(), ValidDateType.PODeadline);
-        if (!optionalValidDate.isPresent()) {
-            throw new ValidDateException(String.format("valid date by training id {%s} was not found.", ticket.trainingId()));
-        }
-
-        Training training = optionalTraining.get();
-        ValidDate validDate = optionalValidDate.get();
+        MailTemplate mailTemplate = retrieveMailTemplate();
+        Training training = retrieveTraining(ticket);
+        ValidDate validDate = retrieveValidDate(ticket);
 
         VariableContext variableContext = buildVariableContext(ticket, nominator, nominee, training, validDate);
         Notification notification = mailTemplate.compose(variableContext);
 
         notificationClient.send(notification);
+    }
+
+    private MailTemplate retrieveMailTemplate() {
+        Optional<MailTemplate> optionalMailTemplate = templateRepository.templateOf(TemplateType.Nomination);
+        String mailTemplateNotFoundMessage = String.format("mail template by %s was not found.", TemplateType.Nomination);
+        return optionalMailTemplate.orElseThrow(() -> new MailTemplateException(mailTemplateNotFoundMessage));
+    }
+
+    private Training retrieveTraining(Ticket ticket) {
+        Optional<Training> optionalTraining = trainingRepository.trainingOf(ticket.trainingId());
+        String trainingNotFoundMessage = String.format("training by id {%s} was not found.", ticket.trainingId());
+        return optionalTraining.orElseThrow(() -> new TrainingException(trainingNotFoundMessage));
+    }
+
+    private ValidDate retrieveValidDate(Ticket ticket) {
+        Optional<ValidDate> optionalValidDate = validDateRepository.validDateOf(ticket.trainingId(), ValidDateType.PODeadline);
+        String validDateNotFoundMessage = String.format("valid date by training id {%s} was not found.", ticket.trainingId());
+        return optionalValidDate.orElseThrow(() -> new ValidDateException(validDateNotFoundMessage));
     }
 
     private VariableContext buildVariableContext(Ticket ticket, Nominator nominator, Nominee nominee, Training training, ValidDate validDate) {
