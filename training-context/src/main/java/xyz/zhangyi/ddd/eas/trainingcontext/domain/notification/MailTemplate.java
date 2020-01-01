@@ -1,9 +1,6 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.notification;
 
-import java.util.ArrayList;
-
 public class MailTemplate {
-    private NotificationComposer notificationComposer;
     private String template;
     private TemplateType templateType;
 
@@ -13,7 +10,7 @@ public class MailTemplate {
     }
 
     public Notification compose(VariableContext context) {
-        notificationComposer = new NotificationComposer(template, context);
+        NotificationComposer notificationComposer = this.templateType.composer(template, context);
         return notificationComposer.compose();
     }
 }

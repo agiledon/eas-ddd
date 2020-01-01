@@ -1,35 +1,20 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.notification;
 
 import org.stringtemplate.v4.ST;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominator;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominee;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Ticket;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.validdate.ValidDate;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationComposer {
+public abstract class NotificationComposer {
     private static final char BEGIN_VARIABLE = '$';
     private static final char END_VARIABLE = '$';
-    private String template;
-    private List<TemplateVariable> variables;
-    private final Training training;
-    private final Ticket ticket;
-    private final ValidDate validDate;
-    private final Nominator nominator;
-    private final Nominee nominee;
+    protected String template;
 
     public NotificationComposer(String template, VariableContext context) {
-        variables = new ArrayList<>();
         this.template = template;
-        training = context.get("training");
-        ticket = context.get("ticket");
-        validDate = context.get("valid_date");
-        nominator = context.get("nominator");
-        nominee = context.get("nominee");
+        setup(context);
     }
+
+    protected void setup(VariableContext context) {}
 
     public Notification compose() {
         String from = renderFrom();
@@ -39,21 +24,14 @@ public class NotificationComposer {
         return new Notification(from, to, subject, body);
     }
 
-    String renderFrom() {
-        return "admin@eas.com";
-    }
+    protected abstract String renderFrom();
 
-    String renderSubject() {
-        return "Ticket Nomination Notification";
-    }
+    protected abstract String renderSubject();
 
-    String renderTo() {
-        return nominee.email();
-    }
+    protected abstract String renderTo();
 
-    String renderBody() {
-        registerVariables();
-
+    private String renderBody() {
+        List<TemplateVariable> variables = registerVariables();
         ST st = new ST(template, BEGIN_VARIABLE, END_VARIABLE);
         for (TemplateVariable variable : variables) {
             st.add(variable.name(), variable.value());
@@ -61,15 +39,5 @@ public class NotificationComposer {
         return st.render();
     }
 
-    private void registerVariables() {
-        variables.add(TemplateVariable.with("nomineeName", nominee.name()));
-        variables.add(TemplateVariable.with("nominatorName", nominator.name()));
-        variables.add(TemplateVariable.with("url", ticket.url()));
-        variables.add(TemplateVariable.with("title", training.title()));
-        variables.add(TemplateVariable.with("description", training.description()));
-        variables.add(TemplateVariable.with("beginTime", training.beginTime().toString()));
-        variables.add(TemplateVariable.with("endTime", training.endTime().toString()));
-        variables.add(TemplateVariable.with("place", training.place()));
-        variables.add(TemplateVariable.with("deadline", validDate.deadline().toString()));
-    }
+    protected abstract List<TemplateVariable> registerVariables();
 }
