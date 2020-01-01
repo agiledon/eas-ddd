@@ -21,18 +21,29 @@ public class MailTemplateTest {
         Training training = createTraining();
         Ticket ticket = createTicket();
 
-        String content = buildContent();
+        String template = buildTemplate();
+        VariableContext context = buildVariableContext(nominator, nominee, validDate, training, ticket);
 
-        MailTemplate mailTemplate = new MailTemplate(content, TemplateType.Nomination);
+        MailTemplate mailTemplate = new MailTemplate(template, TemplateType.Nomination);
 
         // when
-        Notification notification = mailTemplate.compose(training, ticket, validDate, nominator, nominee);
+        Notification notification = mailTemplate.compose(context);
 
         // then
         assertThat(notification.from()).isEqualTo("admin@eas.com");
         assertThat(notification.to()).isEqualTo(nominee.email());
         assertThat(notification.subject()).isEqualTo("Ticket Nomination Notification");
         assertNotificationBody(nominator, nominee, validDate, training, ticket, notification);
+    }
+
+    private VariableContext buildVariableContext(Nominator nominator, Nominee nominee, ValidDate validDate, Training training, Ticket ticket) {
+        VariableContext context = new VariableContext();
+        context.put("training", training);
+        context.put("ticket", ticket);
+        context.put("valid_date", validDate);
+        context.put("nominator", nominator);
+        context.put("nominee", nominee);
+        return context;
     }
 
     private void assertNotificationBody(Nominator nominator, Nominee nominee, ValidDate validDate, Training training, Ticket ticket, Notification notification) {
@@ -51,7 +62,7 @@ public class MailTemplateTest {
         return new Ticket(TicketId.next(), "11111111");
     }
 
-    private String buildContent() {
+    private String buildTemplate() {
         return "Hi $nomineeName$:\n" +
                 "We are glad to notify that you are nominated by $nominatorName$ to attend the training. Please click the link as below to confirm this nomination before the deadline $deadline$:\n" +
                 "$url$\n" +

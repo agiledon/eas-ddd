@@ -23,7 +23,17 @@ public class MailTemplate {
         this.template = template;
     }
 
-    public Notification compose(Training training, Ticket ticket, ValidDate validDate, Nominator nominator, Nominee nominee) {
+    public Notification compose(VariableContext context) {
+        Training training = context.get("training");
+        Ticket ticket = context.get("ticket");
+        ValidDate validDate = context.get("valid_date");
+        Nominator nominator = context.get("nominator");
+        Nominee nominee = context.get("nominee");
+
+        return compose(training, ticket, validDate, nominator, nominee);
+    }
+
+    private Notification compose(Training training, Ticket ticket, ValidDate validDate, Nominator nominator, Nominee nominee) {
         registerVariables(training, ticket, validDate, nominator, nominee);
 
         String from = "admin@eas.com";
