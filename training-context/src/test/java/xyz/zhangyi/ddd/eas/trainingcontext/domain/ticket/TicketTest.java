@@ -5,6 +5,7 @@ import org.junit.Test;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.exceptions.TicketException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.*;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
 import java.time.LocalDateTime;
 
@@ -12,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class TicketTest {
-    private String trainingId;
+    private TrainingId trainingId;
     private Candidate candidate;
     private Nominator nominator;
 
     @Before
     public void setUp() {
-        trainingId = "111011111111";
+        trainingId = TrainingId.next();
         candidate = new Candidate("200901010110", "Tom", "tom@eas.com", trainingId);
         nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
     }

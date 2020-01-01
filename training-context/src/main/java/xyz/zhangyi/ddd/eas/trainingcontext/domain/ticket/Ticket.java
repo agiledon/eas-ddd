@@ -3,20 +3,21 @@ package xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.exceptions.TicketException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.*;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
 import java.time.LocalDateTime;
 
 public class Ticket {
     private TicketId ticketId;
-    private String trainingId;
+    private TrainingId trainingId;
     private TicketStatus ticketStatus;
     private String nomineeId;
 
-    public Ticket(TicketId ticketId, String trainingId) {
+    public Ticket(TicketId ticketId, TrainingId trainingId) {
         this(ticketId, trainingId, TicketStatus.Available);
     }
 
-    public Ticket(TicketId ticketId, String trainingId, TicketStatus ticketStatus) {
+    public Ticket(TicketId ticketId, TrainingId trainingId, TicketStatus ticketStatus) {
         this.ticketId = ticketId;
         this.trainingId = trainingId;
         this.ticketStatus = ticketStatus;
@@ -68,7 +69,7 @@ public class Ticket {
         return String.format("http://www.eas.com/eas/tickets/%s", this.id().value());
     }
 
-    public String trainingId() {
+    public TrainingId trainingId() {
         return trainingId;
     }
 }

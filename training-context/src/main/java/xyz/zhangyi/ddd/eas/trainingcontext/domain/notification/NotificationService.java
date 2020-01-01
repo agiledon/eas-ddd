@@ -23,7 +23,7 @@ public class NotificationService {
         Optional<MailTemplate> optionalMailTemplate = templateRepository.templateOf(TemplateType.Nomination);
         MailTemplate mailTemplate = optionalMailTemplate.get();
 
-        Optional<Training> optionalTraining = trainingRepository.trainingOf(TrainingId.from(ticket.trainingId()));
+        Optional<Training> optionalTraining = trainingRepository.trainingOf(ticket.trainingId());
         Optional<ValidDate> optionalValidDate = validDateRepository.validDateOf(ticket.trainingId(), ValidDateType.PODeadline);
 
         Training training = optionalTraining.get();

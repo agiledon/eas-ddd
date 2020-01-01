@@ -22,7 +22,7 @@ public class NotificationServiceTest {
         // given
         TrainingId trainingId = TrainingId.next();
 
-        Ticket ticket = new Ticket(TicketId.next(), trainingId.toString(), Available);
+        Ticket ticket = new Ticket(TicketId.next(), trainingId, Available);
         Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
         Nominee nominee = new Nominee("200910100111", "bruce", "bruce@email.com");
 
@@ -44,7 +44,7 @@ public class NotificationServiceTest {
         LocalDateTime poDeadline = LocalDateTime.of(2019, 12, 20, 0, 0);
         ValidDate validDate = new ValidDate(poDeadline, ValidDateType.PODeadline);
         ValidDateRepository mockValidDateRepo = mock(ValidDateRepository.class);
-        when(mockValidDateRepo.validDateOf(trainingId.value(), ValidDateType.PODeadline)).thenReturn(Optional.of(validDate));
+        when(mockValidDateRepo.validDateOf(trainingId, ValidDateType.PODeadline)).thenReturn(Optional.of(validDate));
 
         NotificationService notificationService = new NotificationService();
         notificationService.setMailTemplateRepository(mockTemplateRepo);
@@ -58,7 +58,7 @@ public class NotificationServiceTest {
         // then
         verify(mockTemplateRepo).templateOf(TemplateType.Nomination);
         verify(mockTrainingRepo).trainingOf(trainingId);
-        verify(mockValidDateRepo).validDateOf(trainingId.value(), ValidDateType.PODeadline);
+        verify(mockValidDateRepo).validDateOf(trainingId, ValidDateType.PODeadline);
         verify(mockNotificationClient).send(isA(Notification.class));
     }
 

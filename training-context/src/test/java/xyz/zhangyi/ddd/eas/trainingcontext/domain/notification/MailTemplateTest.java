@@ -59,7 +59,7 @@ public class MailTemplateTest {
     }
 
     private Ticket createTicket() {
-        return new Ticket(TicketId.next(), "11111111");
+        return new Ticket(TicketId.next(), TrainingId.next());
     }
 
     private String buildTemplate() {

@@ -6,6 +6,7 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.CandidateRepository;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.exceptions.TicketException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketHistory;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketHistoryRepository;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
 import java.util.Optional;
 
@@ -23,8 +24,7 @@ public class TicketServiceTest {
         TicketService ticketService = new TicketService();
         ticketService.setTicketRepository(mockTickRepo);
 
-        String trainingId = "111011111111";
-        Candidate candidate = new Candidate("200901010110", "Tom", "tom@eas.com", trainingId);
+        Candidate candidate = new Candidate("200901010110", "Tom", "tom@eas.com", TrainingId.next());
         Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
 
         assertThatThrownBy(() -> ticketService.nominate(ticketId, candidate, nominator))
@@ -36,7 +36,7 @@ public class TicketServiceTest {
     @Test
     public void should_nominate_candidate_for_specific_ticket() {
         // given
-        String trainingId = "111011111111";
+        TrainingId trainingId = TrainingId.next();
         TicketId ticketId = TicketId.next();
         Ticket ticket = new Ticket(TicketId.next(), trainingId, Available);
 
