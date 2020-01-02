@@ -10,6 +10,7 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 import static xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketStatus.Available;
@@ -27,7 +28,7 @@ public class TicketServiceTest {
         Candidate candidate = new Candidate("200901010110", "Tom", "tom@eas.com", TrainingId.next());
         Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
 
-        assertThatThrownBy(() -> ticketService.nominate(ticketId, candidate, nominator))
+        assertThatThrownBy(() -> ticketService.nominate(ticketId, nominator, candidate))
                 .isInstanceOf(TicketException.class)
                 .hasMessageContaining(String.format("available ticket by id {%s} is not found", ticketId.value()));
         verify(mockTickRepo).ticketOf(ticketId, Available);
@@ -55,9 +56,10 @@ public class TicketServiceTest {
         Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
 
         // when
-        ticketService.nominate(ticketId, candidate, nominator);
+        Ticket nominatedTicket = ticketService.nominate(ticketId, nominator, candidate);
 
         // then
+        assertThat(nominatedTicket.status().isWaitForConfirm()).isTrue();
         verify(mockTickRepo).ticketOf(ticketId, Available);
         verify(mockTickRepo).update(ticket);
         verify(mockTicketHistoryRepo).add(isA(TicketHistory.class));

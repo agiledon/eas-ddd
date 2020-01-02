@@ -6,4 +6,8 @@ public enum TicketStatus {
     public boolean isAvailable() {
         return this == Available;
     }
+
+    public boolean isWaitForConfirm() {
+        return this == WaitForConfirm;
+    }
 }

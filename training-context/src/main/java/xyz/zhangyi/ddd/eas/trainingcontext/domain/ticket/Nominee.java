@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket;
 
+import java.util.Objects;
+
 public class Nominee {
     private String employeeId;
     private String name;
@@ -21,5 +23,20 @@ public class Nominee {
 
     public String email() {
         return email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Nominee nominee = (Nominee) o;
+        return employeeId.equals(nominee.employeeId) &&
+                name.equals(nominee.name) &&
+                email.equals(nominee.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employeeId, name, email);
     }
 }

@@ -13,7 +13,7 @@ public class TicketService {
     private TicketHistoryRepository ticketHistoryRepo;
     private CandidateRepository candidateRepo;
 
-    public void nominate(TicketId ticketId, Candidate candidate, Nominator nominator) {
+    public Ticket nominate(TicketId ticketId, Nominator nominator, Candidate candidate) {
         Optional<Ticket> optionalTicket = tickRepo.ticketOf(ticketId, TicketStatus.Available);
         Ticket ticket = optionalTicket.orElseThrow(() -> availableTicketNotFound(ticketId));
 
@@ -22,6 +22,8 @@ public class TicketService {
         tickRepo.update(ticket);
         ticketHistoryRepo.add(ticketHistory);
         candidateRepo.remove(candidate);
+
+        return ticket;
     }
 
     private TicketException availableTicketNotFound(TicketId ticketId) {

@@ -1,5 +1,6 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate;
 
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominee;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketOwner;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketOwnerType;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
@@ -21,7 +22,15 @@ public class Candidate {
         return employeeId;
     }
 
+    public String name() {
+        return this.name;
+    }
+
+    public Nominee toNominee() {
+        return new Nominee(employeeId, name, email);
+    }
+
     public TicketOwner toOwner() {
-        return new TicketOwner(employeeId(), TicketOwnerType.Nominee);
+        return new TicketOwner(employeeId, TicketOwnerType.Nominee);
     }
 }
