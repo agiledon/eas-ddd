@@ -46,7 +46,7 @@ public class NotificationServiceTest {
         when(mockTrainingRepo.trainingOf(trainingId)).thenReturn(Optional.of(training));
 
         LocalDateTime poDeadline = LocalDateTime.of(2019, 12, 20, 0, 0);
-        ValidDate validDate = new ValidDate(poDeadline, ValidDateType.PODeadline);
+        ValidDate validDate = new ValidDate(trainingId, poDeadline, ValidDateType.PODeadline);
         ValidDateRepository mockValidDateRepo = mock(ValidDateRepository.class);
         when(mockValidDateRepo.validDateOf(trainingId, ValidDateType.PODeadline)).thenReturn(Optional.of(validDate));
 

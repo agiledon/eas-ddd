@@ -19,12 +19,12 @@ public class LearningService {
         this.learningRepo = learningRepo;
     }
 
-    public boolean beLearned(String candidateId, TrainingId trainingId) {
+    public boolean beLearned(String traineeId, TrainingId trainingId) {
         Optional<Training> optionalTraining = trainingRepo.trainingOf(trainingId);
         if (!optionalTraining.isPresent())
             throw new TrainingException(String.format("training by id {%s} can not be found.", trainingId));
 
         Training training = optionalTraining.get();
-        return learningRepo.exists(candidateId, training.courseId());
+        return learningRepo.exists(traineeId, training.courseId());
     }
 }

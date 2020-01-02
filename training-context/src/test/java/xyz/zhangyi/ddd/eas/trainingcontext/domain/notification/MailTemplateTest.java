@@ -18,8 +18,9 @@ public class MailTemplateTest {
         // given
         Nominator nominator = createNominator();
         Nominee nominee = createNominee();
-        ValidDate validDate = createValidDate();
-        Training training = createTraining();
+        TrainingId trainingId = TrainingId.next();
+        Training training = createTraining(trainingId);
+        ValidDate validDate = createValidDate(trainingId);
         Ticket ticket = createTicket();
 
         String template = buildTemplate();
@@ -79,8 +80,7 @@ public class MailTemplateTest {
                 "EAS Team";
     }
 
-    private Training createTraining() {
-        TrainingId trainingId = TrainingId.next();
+    private Training createTraining(TrainingId trainingId) {
         CourseId courseId = CourseId.next();
         LocalDateTime beginTime = LocalDateTime.of(2020, 1, 8, 9, 0);
         LocalDateTime endTime = LocalDateTime.of(2020, 1, 9, 17, 0);
@@ -88,9 +88,9 @@ public class MailTemplateTest {
         return new Training(trainingId, "ddd", "ddd training", beginTime, endTime, place, courseId);
     }
 
-    private ValidDate createValidDate() {
+    private ValidDate createValidDate(TrainingId trainingId) {
         LocalDateTime poDeadline = LocalDateTime.of(2019, 12, 20, 0, 0);
-        return new ValidDate(poDeadline, ValidDateType.PODeadline);
+        return new ValidDate(trainingId, poDeadline, ValidDateType.PODeadline);
     }
 
     private Nominee createNominee() {
