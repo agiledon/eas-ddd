@@ -43,6 +43,10 @@
 
         <flyway.version>6.0.4</flyway.version>
 
+        <spring.version>5.2.2.RELEASE</spring.version>
+        <mybatis.version>3.5.3</mybatis.version>
+        <mybatis.spring.version>2.0.3</mybatis.spring.version>
+
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <assertj-core.version>3.6.2</assertj-core.version>
@@ -63,6 +67,22 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.driver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>${spring.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
