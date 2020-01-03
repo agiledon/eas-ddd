@@ -21,9 +21,10 @@
         <java.version>1.8</java.version>
 
         <spring.version>5.0.8.RELEASE</spring.version>
+        <mysql.driver.version>8.0.17</mysql.driver.version>
 
         <db.driver>com.mysql.jdbc.Driver</db.driver>
-        <db.url>jdbc:mysql://localhost:3306/payroll?serverTimezone=UTC</db.url>
+        <db.url>jdbc:mysql://localhost:3306/eas-db?serverTimezone=UTC</db.url>
         <db.user>sa</db.user>
         <db.password>123456</db.password>
 
@@ -57,6 +58,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.driver.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
