@@ -1,25 +1,28 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.training;
 
+import xyz.zhangyi.ddd.eas.core.domain.Identity;
+
 import java.util.Objects;
 import java.util.UUID;
 
-public class TrainingId {
-    private String id;
+public class TrainingId implements Identity {
+    private String value;
 
-    public TrainingId(String id) {
-        this.id = id;
+    public TrainingId(String value) {
+        this.value = value;
     }
 
-    public static TrainingId from(String id) {
-        return new TrainingId(id);
+    public static TrainingId from(String value) {
+        return new TrainingId(value);
     }
 
     public static TrainingId next() {
         return new TrainingId(UUID.randomUUID().toString());
     }
 
+    @Override
     public String value() {
-        return this.id;
+        return this.value;
     }
 
     @Override
@@ -27,16 +30,16 @@ public class TrainingId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TrainingId that = (TrainingId) o;
-        return id.equals(that.id);
+        return value.equals(that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(value);
     }
 
     @Override
     public String toString() {
-        return id;
+        return value;
     }
 }

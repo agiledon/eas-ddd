@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>employee-context</artifactId>
+    <artifactId>eas-entry</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,12 +18,18 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>xyz.zhangyi.ddd</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>training-context</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>xyz.zhangyi.ddd</groupId>
+            <artifactId>employee-context</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
