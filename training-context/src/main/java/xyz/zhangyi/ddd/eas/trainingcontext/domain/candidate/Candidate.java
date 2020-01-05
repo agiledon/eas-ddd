@@ -26,11 +26,19 @@ public class Candidate {
         return this.name;
     }
 
-    public Nominee toNominee() {
-        return new Nominee(employeeId, name, email);
+    public String email() {
+        return email;
+    }
+
+    public TrainingId trainingId() {
+        return trainingId;
     }
 
     public TicketOwner toOwner() {
         return new TicketOwner(employeeId, TicketOwnerType.Nominee);
+    }
+
+    public Nominee toNominee() {
+        return new Nominee(employeeId, name, email);
     }
 }
