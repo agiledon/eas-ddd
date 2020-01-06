@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <typeAliases>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.training"/>
+    </typeAliases>
     <mappers>
         <mapper resource="mapper/TrainingMapper.xml"/>
     </mappers>
