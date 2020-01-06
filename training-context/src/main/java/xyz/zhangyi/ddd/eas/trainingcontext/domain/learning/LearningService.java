@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.learning;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
@@ -7,8 +9,11 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository;
 
 import java.util.Optional;
 
+@Service
 public class LearningService {
+    @Autowired
     private TrainingRepository trainingRepo;
+    @Autowired
     private LearningRepository learningRepo;
 
     public void setTrainingRepository(TrainingRepository trainingRepo) {

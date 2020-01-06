@@ -1,14 +1,20 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.exceptions.NominationException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.learning.LearningService;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.notification.NotificationService;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
+@Service
 public class NominationService {
+    @Autowired
     private LearningService learningService;
+    @Autowired
     private TicketService ticketService;
+    @Autowired
     private NotificationService notificationService;
 
     public void setLearningService(LearningService learningService) {

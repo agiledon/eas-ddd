@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.CandidateRepository;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.exceptions.TicketException;
@@ -8,9 +10,13 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketHistoryRep
 
 import java.util.Optional;
 
+@Service
 public class TicketService {
+    @Autowired
     private TicketRepository tickRepo;
+    @Autowired
     private TicketHistoryRepository ticketHistoryRepo;
+    @Autowired
     private CandidateRepository candidateRepo;
 
     public Ticket nominate(TicketId ticketId, Nominator nominator, Candidate candidate) {

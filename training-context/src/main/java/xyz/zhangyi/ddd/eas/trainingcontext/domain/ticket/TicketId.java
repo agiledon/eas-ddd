@@ -14,6 +14,10 @@ public class TicketId {
         return new TicketId(UUID.randomUUID().toString());
     }
 
+    public static TicketId from(String value) {
+        return new TicketId(value);
+    }
+
     public String value() {
         return value;
     }

@@ -5,8 +5,20 @@
 <configuration>
     <typeAliases>
         <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.training"/>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.learning"/>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket"/>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory"/>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate"/>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.validdate"/>
+        <package name="xyz.zhangyi.ddd.eas.trainingcontext.domain.notification"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/TrainingMapper.xml"/>
+        <mapper resource="mapper/LearningMapper.xml"/>
+        <mapper resource="mapper/TicketMapper.xml"/>
+        <mapper resource="mapper/TicketHistoryMapper.xml"/>
+        <mapper resource="mapper/CandidateMapper.xml"/>
+        <mapper resource="mapper/MailTemplateMapper.xml"/>
+        <mapper resource="mapper/ValidDateMapper.xml"/>
     </mappers>
 </configuration>

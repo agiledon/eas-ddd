@@ -3,13 +3,17 @@ package xyz.zhangyi.ddd.eas.trainingcontext.domain.validdate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class ValidDate {
+    private String id;
     private TrainingId trainingId;
     private LocalDateTime deadline;
     private ValidDateType validDateType;
 
     public ValidDate(TrainingId trainingId, LocalDateTime deadline, ValidDateType validDateType) {
+        this.id = UUID.randomUUID().toString();
+        this.trainingId = trainingId;
         this.deadline = deadline;
         this.validDateType = validDateType;
     }

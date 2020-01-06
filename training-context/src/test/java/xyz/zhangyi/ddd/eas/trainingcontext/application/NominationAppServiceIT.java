@@ -22,16 +22,16 @@ public class NominationAppServiceIT {
     @Autowired
     private TrainingRepository trainingRepository;
 
-//    @Autowired
-//    private NominationAppService nominationAppService;
+    @Autowired
+    private NominationAppService nominationAppService;
 
-//    @Test
-//    public void should_nominate_candidate_to_nominee() {
-//        NominationRequest nominationRequest = createNominationRequest();
-//
-//        nominationAppService.nominate(nominationRequest);
-//
-//    }
+    @Test
+    public void should_nominate_candidate_to_nominee() {
+        NominationRequest nominationRequest = createNominationRequest();
+
+        nominationAppService.nominate(nominationRequest);
+
+    }
 
     @Test
     public void test_trainingRepo() {

@@ -8,19 +8,24 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 import java.time.LocalDateTime;
 
 public class Ticket {
-    private TicketId ticketId;
+    private TicketId id;
     private TrainingId trainingId;
     private TicketStatus ticketStatus;
     private String nomineeId;
 
-    public Ticket(TicketId ticketId, TrainingId trainingId) {
-        this(ticketId, trainingId, TicketStatus.Available);
+    public Ticket(TicketId id, TrainingId trainingId) {
+        this(id, trainingId, TicketStatus.Available, null);
     }
 
-    public Ticket(TicketId ticketId, TrainingId trainingId, TicketStatus ticketStatus) {
-        this.ticketId = ticketId;
+    public Ticket(TicketId id, TrainingId trainingId, TicketStatus ticketStatus) {
+        this(id, trainingId, ticketStatus, null);
+    }
+
+    public Ticket(TicketId id, TrainingId trainingId, TicketStatus ticketStatus, String nomineeId) {
+        this.id = id;
         this.trainingId = trainingId;
         this.ticketStatus = ticketStatus;
+        this.nomineeId = nomineeId;
     }
 
     public TicketHistory nominate(Candidate candidate, Nominator nominator) {
@@ -41,7 +46,7 @@ public class Ticket {
     }
 
     private TicketHistory generateHistory(Candidate candidate, Nominator nominator) {
-        return new TicketHistory(ticketId,
+        return new TicketHistory(id,
                 candidate.toOwner(),
                 transitState(),
                 OperationType.Nomination,
@@ -62,7 +67,7 @@ public class Ticket {
     }
 
     public TicketId id() {
-        return this.ticketId;
+        return this.id;
     }
 
     public String url() {

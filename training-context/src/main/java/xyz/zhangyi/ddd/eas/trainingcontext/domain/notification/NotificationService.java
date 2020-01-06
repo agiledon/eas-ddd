@@ -1,5 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.notification;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominator;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominee;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Ticket;
@@ -14,10 +16,15 @@ import xyz.zhangyi.ddd.eas.trainingcontext.gateway.interfaces.NotificationClient
 
 import java.util.Optional;
 
+@Service
 public class NotificationService {
+    @Autowired
     private MailTemplateRepository templateRepository;
+    @Autowired
     private NotificationClient notificationClient;
+    @Autowired
     private TrainingRepository trainingRepository;
+    @Autowired
     private ValidDateRepository validDateRepository;
 
     public void notifyNominee(Ticket ticket, Nominator nominator, Nominee nominee) {

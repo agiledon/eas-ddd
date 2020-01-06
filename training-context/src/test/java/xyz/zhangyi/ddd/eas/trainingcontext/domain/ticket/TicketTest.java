@@ -53,8 +53,8 @@ public class TicketTest {
     private void assertTicketHistory(Ticket ticket, TicketHistory ticketHistory) {
         assertThat(ticketHistory.ticketId()).isEqualTo(ticket.id());
         assertThat(ticketHistory.operationType()).isEqualTo(OperationType.Nomination);
-        assertThat(ticketHistory.owner()).isEqualTo(new TicketOwner(candidate.employeeId(), TicketOwnerType.Nominee));
-        assertThat(ticketHistory.stateTransit()).isEqualTo(StateTransit.from(TicketStatus.Available).to(TicketStatus.WaitForConfirm));
+        assertThat(ticketHistory.getTicketOwner()).isEqualTo(new TicketOwner(candidate.employeeId(), TicketOwnerType.Nominee));
+        assertThat(ticketHistory.getStateTransit()).isEqualTo(StateTransit.from(TicketStatus.Available).to(TicketStatus.WaitForConfirm));
         assertThat(ticketHistory.operatedBy()).isEqualTo(new Operator(nominator.employeeId(), nominator.name()));
         assertThat(ticketHistory.operatedAt()).isEqualToIgnoringSeconds(LocalDateTime.now());
     }

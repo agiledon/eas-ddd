@@ -33,6 +33,7 @@ CREATE TABLE ticket_history (
 
 CREATE TABLE learning (
     id VARCHAR(50) NOT NULL,
+    courseId VARCHAR(50) NOT NULL,
     trainingId VARCHAR(50) NOT NULL,
     traineeId VARCHAR(50) NOT NULL,
     PRIMARY KEY(id)
@@ -55,7 +56,7 @@ CREATE TABLE valid_date (
 
 CREATE TABLE mail_template (
     id VARCHAR(50) NOT NULL,
-    template VARCHAR(500) NOT NULL,
+    template VARCHAR(1000) NOT NULL,
     templateType VARCHAR(20) NOT NULL,
     PRIMARY KEY(id)
 );

@@ -5,13 +5,17 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketOwner;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketOwnerType;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
+import java.util.UUID;
+
 public class Candidate {
+    private String id;
     private String employeeId;
     private String name;
     private String email;
     private TrainingId trainingId;
 
     public Candidate(String EmployeeId, String name, String email, TrainingId trainingId) {
+        this.id = UUID.randomUUID().toString();
         this.employeeId = EmployeeId;
         this.name = name;
         this.email = email;

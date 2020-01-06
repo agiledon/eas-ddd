@@ -2,6 +2,7 @@ package xyz.zhangyi.ddd.eas.trainingcontext.application.messages;
 
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominator;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TrainingRole;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
@@ -35,6 +36,14 @@ public class NominationRequest {
         this.nominatorName = nominatorName;
         this.nominatorEmail = nominatorEmail;
         this.nominatorRole = nominatorRole;
+    }
+
+    public TicketId ticketId() {
+        return TicketId.from(this.ticketId);
+    }
+
+    public TrainingId trainingId() {
+        return TrainingId.from(this.trainingId);
     }
 
     public Candidate toCandidate() {

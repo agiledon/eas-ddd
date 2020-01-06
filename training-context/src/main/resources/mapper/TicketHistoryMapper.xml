@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketHistoryRepository" >
+    <resultMap id="ticketHistoryResult" type="TicketHistory" >
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="ticketId" property="ticketId.value" jdbcType="VARCHAR" />
+        <result column="OperationType" property="OperationType" jdbcType="VARCHAR" />
+        <result column="operatedAt" property="operatedAt" jdbcType="TIMESTAMP" />
+        <association column="ticketOwner" property="ticketOwner"  javaType="TicketOwner" resultMap="ticketOwnerResult"/>
+        <association column="stateTransit" property="stateTransit"  javaType="StateTransit" resultMap="stateTransitResult"/>
+        <association column="operatedBy" property="operatedBy"  javaType="Operator" resultMap="operatorResult"/>
+    </resultMap>
+    <resultMap id="ticketOwnerResult" type="TicketOwner">
+        <result column="ownerId" property="employeeId" jdbcType="VARCHAR" />
+        <result column="ownerType" property="ownerType" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="stateTransitResult" type="StateTransit">
+        <result column="fromStatus" property="from" jdbcType="VARCHAR" />
+        <result column="toStatus" property="to" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="operatorResult" type="Operator">
+        <result column="operatorId" property="operatorId" jdbcType="VARCHAR" />
+        <result column="operatorName" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <insert id="add" parameterType="TicketHistory">
+        insert into ticket_history
+        (id, ticketId, ownerId, ownerType, fromStatus, toStatus, operationType, operatorId, operatorName, operatedAt)
+        values
+        (
+        #{id},
+        #{ticketId}, #{ticketOwner.employeeId}, #{ticketOwner.ownerType},
+        #{stateTransit.from}, #{stateTransit.to}, #{operationType},
+        #{operatedBy.operatorId}, #{operatedBy.name}, #{operatedAt}
+        )
+    </insert>
+</mapper>

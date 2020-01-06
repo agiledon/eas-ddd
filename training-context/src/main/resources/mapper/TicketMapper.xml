@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketRepository" >
+    <resultMap id="ticketResult" type="Ticket" >
+        <id column="id" property="id.value" jdbcType="VARCHAR"/>
+        <result column="ticketStatus" property="ticketStatus" jdbcType="VARCHAR" />
+        <result column="trainingId" property="trainingId.value" jdbcType="VARCHAR" />
+        <result column="nomineeId" property="nomineeId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="ticketOf" resultMap="ticketResult" >
+        select
+        id, trainingId, ticketStatus, nomineeId
+        from ticket
+        where id = #{arg0} and ticketStatus = #{arg1}
+    </select>
+
+    <update id="update" parameterType="Ticket">
+        update ticket
+            <set>
+                <if test="trainingId != null">trainingId=#{trainingId},</if>
+                <if test="ticketStatus != null">ticketStatus=#{ticketStatus},</if>
+                <if test="nomineeId != null">nomineeId=#{nomineeId}</if>
+            </set>
+    </update>
+</mapper>

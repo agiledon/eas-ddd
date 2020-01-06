@@ -3,8 +3,10 @@ package xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketId;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class TicketHistory {
+    private String id;
     private TicketId ticketId;
     private TicketOwner owner;
     private StateTransit stateTransit;
@@ -18,6 +20,7 @@ public class TicketHistory {
                          OperationType operationType,
                          Operator operatedBy,
                          LocalDateTime operatedAt) {
+        this.id = UUID.randomUUID().toString();
         this.ticketId = ticketId;
         this.owner = owner;
         this.stateTransit = stateTransit;
@@ -30,11 +33,11 @@ public class TicketHistory {
         return this.ticketId;
     }
 
-    public TicketOwner owner() {
+    public TicketOwner getTicketOwner() {
         return this.owner;
     }
 
-    public StateTransit stateTransit() {
+    public StateTransit getStateTransit() {
         return this.stateTransit;
     }
 

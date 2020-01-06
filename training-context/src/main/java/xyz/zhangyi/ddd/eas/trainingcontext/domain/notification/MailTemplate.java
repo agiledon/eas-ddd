@@ -1,10 +1,14 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.notification;
 
+import java.util.UUID;
+
 public class MailTemplate {
+    private String id;
     private String template;
     private TemplateType templateType;
 
     public MailTemplate(String template, TemplateType templateType) {
+        this.id = UUID.randomUUID().toString();
         this.templateType = templateType;
         this.template = template;
     }
