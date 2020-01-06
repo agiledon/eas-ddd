@@ -1,5 +1,7 @@
 mybatis:
   mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: xyz.zhangyi.ddd.eas.trainingcontext.domain
+  type-handlers-package: xyz.zhangyi.ddd.eas.trainingcontext.gateway.impl.persistence.typehandlers
 
 spring:
   datasource:

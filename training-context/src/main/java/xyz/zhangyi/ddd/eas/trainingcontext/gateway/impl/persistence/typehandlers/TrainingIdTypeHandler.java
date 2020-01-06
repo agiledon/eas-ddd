@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.trainingcontext.gateway.impl.persistence.helper;
+package xyz.zhangyi.ddd.eas.trainingcontext.gateway.impl.persistence.typehandlers;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
