@@ -17,4 +17,19 @@
         from training
         where id = #{arg0}
     </select>
+
+    <insert id="add" parameterType="Training">
+        insert into training
+        (id, title, description, beginTime, endTime, place, courseId)
+        values
+        (
+        #{id}, #{title}, #{description},
+        #{beginTime}, #{endTime}, #{place},
+        #{courseId}
+        )
+    </insert>
+
+    <delete id="remove" parameterType="Training">
+        delete from training where id = #{id}
+    </delete>
 </mapper>

@@ -7,4 +7,6 @@ import java.util.Optional;
 @Repository
 public interface TrainingRepository {
     Optional<Training> trainingOf(TrainingId trainingId);
+    void add(Training training);
+    void remove(Training training);
 }

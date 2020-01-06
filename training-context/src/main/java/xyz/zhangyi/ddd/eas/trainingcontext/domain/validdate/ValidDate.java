@@ -12,7 +12,11 @@ public class ValidDate {
     private ValidDateType validDateType;
 
     public ValidDate(TrainingId trainingId, LocalDateTime deadline, ValidDateType validDateType) {
-        this.id = UUID.randomUUID().toString();
+        this(UUID.randomUUID().toString(), trainingId, deadline, validDateType);
+    }
+
+    public ValidDate(String id, TrainingId trainingId, LocalDateTime deadline, ValidDateType validDateType) {
+        this.id = id;
         this.trainingId = trainingId;
         this.deadline = deadline;
         this.validDateType = validDateType;

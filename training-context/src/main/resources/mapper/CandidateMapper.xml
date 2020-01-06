@@ -7,7 +7,7 @@
         <result column="trainingId" property="trainingId.value" jdbcType="VARCHAR" />
     </resultMap>
 
-    <insert id="remove" parameterType="Candidate">
+    <delete id="remove" parameterType="Candidate">
         delete from candidate where employeeId =#{employeeId} and trainingId =#{trainingId}
-    </insert>
+    </delete>
 </mapper>

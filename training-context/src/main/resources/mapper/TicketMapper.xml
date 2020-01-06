@@ -23,4 +23,17 @@
                 <if test="nomineeId != null">nomineeId=#{nomineeId}</if>
             </set>
     </update>
+
+    <insert id="add" parameterType="Ticket">
+        insert into ticket
+        (id, ticketStatus, trainingId, nomineeId)
+        values
+        (
+        #{id}, #{ticketStatus}, #{trainingId}, #{nomineeId}
+        )
+    </insert>
+
+    <delete id="remove" parameterType="Ticket">
+        delete from ticket where id = #{id}
+    </delete>
 </mapper>

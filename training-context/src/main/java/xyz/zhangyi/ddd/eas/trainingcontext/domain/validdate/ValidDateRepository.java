@@ -8,4 +8,6 @@ import java.util.Optional;
 @Repository
 public interface ValidDateRepository {
     Optional<ValidDate> validDateOf(TrainingId trainingId, ValidDateType validDateType);
+    void add(ValidDate validDate);
+    void remove(ValidDate validDate);
 }

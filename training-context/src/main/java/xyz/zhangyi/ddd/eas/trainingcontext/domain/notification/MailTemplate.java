@@ -9,8 +9,8 @@ public class MailTemplate {
 
     public MailTemplate(String template, TemplateType templateType) {
         this.id = UUID.randomUUID().toString();
-        this.templateType = templateType;
         this.template = template;
+        this.templateType = templateType;
     }
 
     public Notification compose(VariableContext context) {

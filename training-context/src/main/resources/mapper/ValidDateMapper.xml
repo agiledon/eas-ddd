@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="xyz.zhangyi.ddd.eas.trainingcontext.domain.validdate.ValidDateRepository" >
-    <resultMap id="validDateResult" type="MailTemplate" >
+    <resultMap id="validDateResult" type="ValidDate" >
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="trainingId" property="trainingId.value" jdbcType="VARCHAR" />
         <result column="deadline" property="deadline" jdbcType="TIMESTAMP" />
@@ -14,4 +14,17 @@
         from valid_date
         where trainingId = #{arg0} and validDateType = #{arg1}
     </select>
+
+    <insert id="add" parameterType="ValidDate">
+        insert into valid_date
+        (id, trainingId, deadline, validDateType)
+        values
+        (
+        #{id}, #{trainingId}, #{deadline}, #{validDateType}
+        )
+    </insert>
+
+    <delete id="remove" parameterType="ValidDate">
+        delete from valid_date where trainingId = #{trainingId} and validDateType = #{validDateType}
+    </delete>
 </mapper>

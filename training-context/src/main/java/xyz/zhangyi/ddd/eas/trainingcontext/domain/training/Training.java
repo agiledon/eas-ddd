@@ -3,6 +3,7 @@ package xyz.zhangyi.ddd.eas.trainingcontext.domain.training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Training {
     private TrainingId id;
@@ -12,6 +13,10 @@ public class Training {
     private LocalDateTime endTime;
     private String place;
     private CourseId courseId;
+
+    public Training(String title, String description, LocalDateTime beginTime, LocalDateTime endTime, String place, CourseId courseId) {
+        this(TrainingId.from(UUID.randomUUID().toString()), title, description, beginTime, endTime, place, courseId);
+    }
 
     public Training(TrainingId id, String title, String description, LocalDateTime beginTime, LocalDateTime endTime, String place, CourseId courseId) {
         this.id = id;

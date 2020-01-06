@@ -8,6 +8,6 @@ import xyz.zhangyi.ddd.eas.trainingcontext.gateway.interfaces.NotificationClient
 public class NotificationClientImpl implements NotificationClient {
     @Override
     public void send(Notification notification) {
-
+        System.out.println("send the notification");
     }
 }
