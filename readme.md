@@ -10,6 +10,8 @@ EAS-DDD是我为GitChat课程《[领域驱动设计实战（战略篇）](https:
 ### 环境
 
 本项目的开发基于Java语言进行开发，具体环境包括：
+
+```
 Java: Java 8+
 Maven: 3
 Spring: 5.1.10+
@@ -17,6 +19,7 @@ Spring Boot：2.1.9
 MyBatis：3.5.3
 Druid：1.1.20
 MySQL: 8.0 Community
+```
 
 我个人认为JPA ORM更加符合DDD的设计，在另外一个采用DDD开发的项目[Payroll-DDD](https://github.com/agiledon/payroll-ddd)，我选择的持久化框架就是Spring Data JPA。本项目之所以采用MyBatis，是考虑到MyBatis在国内企业软件开发领域中更为常见。同时，我也希望通过本项目说明使用MyBatis作为持久化框架，同样可以做DDD。
 
