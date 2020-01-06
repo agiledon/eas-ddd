@@ -23,6 +23,10 @@ public class Training {
         this.courseId = courseId;
     }
 
+    public TrainingId id() {
+        return this.id;
+    }
+
     public CourseId courseId() {
         return courseId;
     }

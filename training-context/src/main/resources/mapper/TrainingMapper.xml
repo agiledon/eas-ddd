@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository" >
+    <resultMap id="trainingResultMap" type="xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training" >
+        <id column="id" property="id.value" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="beginTime" property="beginTime" jdbcType="TIMESTAMP" />
+        <result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
+        <result column="place" property="place" jdbcType="VARCHAR" />
+        <result column="courseId" property="courseId.value" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="trainingOf" resultMap="trainingResultMap" parameterType="xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId" >
+        select
+        id, title, description, beginTime, endTime, place, courseId
+        from training
+        where id = #{trainingId.value}
+    </select>
+</mapper>

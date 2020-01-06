@@ -13,7 +13,7 @@ CREATE TABLE ticket (
     id VARCHAR(50) NOT NULL,
     ticketStatus VARCHAR(20) NOT NULL,
     trainingId VARCHAR(50) NOT NULL,
-    nomineeId VARCHAR(50) NOT NULL,
+    nomineeId VARCHAR(50),
     PRIMARY KEY(id)
 );
 
