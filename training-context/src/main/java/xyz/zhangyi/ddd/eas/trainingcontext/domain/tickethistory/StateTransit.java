@@ -8,6 +8,14 @@ public class StateTransit {
     private TicketStatus from;
     private TicketStatus to;
 
+    private StateTransit() {
+    }
+
+    public StateTransit(TicketStatus from, TicketStatus to) {
+        this.from = from;
+        this.to = to;
+    }
+
     public static StateTransit from(TicketStatus from) {
         StateTransit stateTransit = new StateTransit();
         stateTransit.from = from;

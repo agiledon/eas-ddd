@@ -9,6 +9,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.messages.NominationRequest;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.*;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.StateTransit;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketHistory;
+import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.TicketHistoryRepository;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository;
@@ -20,6 +23,8 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketStatus.Available;
+import static xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketStatus.WaitForConfirm;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/spring-mybatis.xml")
@@ -30,6 +35,8 @@ public class NominationAppServiceIT {
     private TicketRepository ticketRepository;
     @Autowired
     private ValidDateRepository validDateRepository;
+    @Autowired
+    private TicketHistoryRepository ticketHistoryRepository;
 
     @Autowired
     private NominationAppService nominationAppService;
@@ -52,6 +59,7 @@ public class NominationAppServiceIT {
         trainingRepository.remove(training);
         ticketRepository.remove(ticket);
         validDateRepository.remove(validDate);
+        ticketHistoryRepository.deleteBy(ticketId);
 
         // prepare new data;
         trainingRepository.add(this.training);
@@ -68,15 +76,22 @@ public class NominationAppServiceIT {
         nominationAppService.nominate(nominationRequest);
 
         // then
-        Optional<Ticket> optionalAvailableTicket = ticketRepository.ticketOf(ticketId, TicketStatus.Available);
+        Optional<Ticket> optionalAvailableTicket = ticketRepository.ticketOf(ticketId, Available);
         assertThat(optionalAvailableTicket.isPresent()).isFalse();
 
         Optional<Ticket> optionalConfirmedTicket = ticketRepository.ticketOf(ticketId, TicketStatus.WaitForConfirm);
         assertThat(optionalConfirmedTicket.isPresent()).isTrue();
-        assertThat(optionalConfirmedTicket.get().id()).isEqualTo(ticketId);
-        assertThat(optionalConfirmedTicket.get().trainingId()).isEqualTo(trainingId);
-        assertThat(optionalConfirmedTicket.get().status()).isEqualTo(TicketStatus.WaitForConfirm);
-        assertThat(optionalConfirmedTicket.get().nomineeId()).isEqualTo(candidateId);
+        Ticket ticket = optionalConfirmedTicket.get();
+        assertThat(ticket.id()).isEqualTo(ticketId);
+        assertThat(ticket.trainingId()).isEqualTo(trainingId);
+        assertThat(ticket.status()).isEqualTo(TicketStatus.WaitForConfirm);
+        assertThat(ticket.nomineeId()).isEqualTo(candidateId);
+
+        Optional<TicketHistory> optionalTicketHistory = ticketHistoryRepository.latest(ticketId);
+        assertThat(optionalTicketHistory.isPresent()).isTrue();
+        TicketHistory ticketHistory = optionalTicketHistory.get();
+        assertThat(ticketHistory.ticketId()).isEqualTo(ticketId);
+        assertThat(ticketHistory.getStateTransit()).isEqualTo(StateTransit.from(Available).to(WaitForConfirm));
     }
 
     private Training createTraining() {

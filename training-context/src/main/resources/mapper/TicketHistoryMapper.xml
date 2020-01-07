@@ -4,24 +4,34 @@
     <resultMap id="ticketHistoryResult" type="TicketHistory" >
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="ticketId" property="ticketId.value" jdbcType="VARCHAR" />
-        <result column="OperationType" property="OperationType" jdbcType="VARCHAR" />
+        <result column="operationType" property="operationType" jdbcType="VARCHAR" />
         <result column="operatedAt" property="operatedAt" jdbcType="TIMESTAMP" />
-        <association column="ticketOwner" property="ticketOwner"  javaType="TicketOwner" resultMap="ticketOwnerResult"/>
-        <association column="stateTransit" property="stateTransit"  javaType="StateTransit" resultMap="stateTransitResult"/>
-        <association column="operatedBy" property="operatedBy"  javaType="Operator" resultMap="operatorResult"/>
+        <association property="owner" javaType="TicketOwner">
+            <constructor>
+                <arg column="ownerId" jdbcType="VARCHAR" javaType="String"/>
+                <arg column="ownerType" jdbcType="VARCHAR" javaType="TicketOwnerType" />
+            </constructor>
+        </association>
+        <association property="stateTransit"  javaType="StateTransit">
+            <constructor>
+                <arg column="fromStatus" jdbcType="VARCHAR" javaType="TicketStatus" />
+                <arg column="toStatus"  jdbcType="VARCHAR" javaType="TicketStatus" />
+            </constructor>
+        </association>
+        <association property="operatedBy"  javaType="Operator">
+            <constructor>
+                <arg column="operatorId" jdbcType="VARCHAR" javaType="String" />
+                <arg column="operatorName" jdbcType="VARCHAR" javaType="String" />
+            </constructor>
+        </association>
     </resultMap>
-    <resultMap id="ticketOwnerResult" type="TicketOwner">
-        <result column="ownerId" property="employeeId" jdbcType="VARCHAR" />
-        <result column="ownerType" property="ownerType" jdbcType="VARCHAR" />
-    </resultMap>
-    <resultMap id="stateTransitResult" type="StateTransit">
-        <result column="fromStatus" property="from" jdbcType="VARCHAR" />
-        <result column="toStatus" property="to" jdbcType="VARCHAR" />
-    </resultMap>
-    <resultMap id="operatorResult" type="Operator">
-        <result column="operatorId" property="operatorId" jdbcType="VARCHAR" />
-        <result column="operatorName" property="name" jdbcType="VARCHAR" />
-    </resultMap>
+
+    <select id="latest" parameterType="TicketId" resultMap="ticketHistoryResult">
+        select
+        id, ticketId, ownerId, ownerType, fromStatus, toStatus, operationType, operatorId, operatorName, operatedAt
+        from ticket_history
+        where ticketId = #{ticketId} and operatedAt = (select max(operatedAt) from ticket_history where ticketId = #{ticketId})
+    </select>
 
     <insert id="add" parameterType="TicketHistory">
         insert into ticket_history
@@ -34,4 +44,8 @@
         #{operatedBy.operatorId}, #{operatedBy.name}, #{operatedAt}
         )
     </insert>
+
+    <delete id="deleteBy" parameterType="TicketId">
+        delete from ticket_history where ticketId = #{ticketId}
+    </delete>
 </mapper>
