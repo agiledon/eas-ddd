@@ -19,8 +19,8 @@ public class NominationAppService {
     public void nominate(NominationRequest nominationRequest) throws ApplicationException {
         try {
             nominationService.nominate(
-                    nominationRequest.ticketId(),
-                    nominationRequest.trainingId(),
+                    nominationRequest.getTicketId(),
+                    nominationRequest.getTrainingId(),
                     nominationRequest.toCandidate(),
                     nominationRequest.toNominator());
         } catch (DomainException ex) {

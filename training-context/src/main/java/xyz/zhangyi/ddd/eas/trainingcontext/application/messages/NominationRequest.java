@@ -6,8 +6,10 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TrainingRole;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 
+import java.io.Serializable;
+
 // Request Message: DTO
-public class NominationRequest {
+public class NominationRequest implements Serializable {
     private String ticketId;
     private String trainingId;
     private String candidateId;
@@ -38,11 +40,11 @@ public class NominationRequest {
         this.nominatorRole = nominatorRole;
     }
 
-    public TicketId ticketId() {
+    public TicketId getTicketId() {
         return TicketId.from(this.ticketId);
     }
 
-    public TrainingId trainingId() {
+    public TrainingId getTrainingId() {
         return TrainingId.from(this.trainingId);
     }
 

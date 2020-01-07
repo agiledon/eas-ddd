@@ -1,25 +1,37 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.resources;
 
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import xyz.zhangyi.ddd.eas.core.application.ApplicationException;
+import xyz.zhangyi.ddd.eas.trainingcontext.application.TrainingAppService;
+import xyz.zhangyi.ddd.eas.trainingcontext.application.messages.TrainingResponse;
 
-import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/trainings")
 public class TrainingResource {
+    private Logger logger = Logger.getLogger(TrainingResource.class.getName());
+
     @Autowired
-    private TrainingRepository trainingRepo;
+    private TrainingAppService trainingAppService;
 
     @GetMapping(value = "/{id}")
-    public String getTrainingTitle(@PathVariable String id) {
-        Optional<Training> training = trainingRepo.trainingOf(TrainingId.from(id));
-        return training.get().title();
+    public ResponseEntity<TrainingResponse> findBy(@PathVariable String id) {
+        if (Strings.isNullOrEmpty(id)) {
+            logger.log(Level.WARNING, "training id of reqeust is null or empty.");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        try {
+            TrainingResponse trainingResponse = trainingAppService.trainingOf(id);
+            return new ResponseEntity<>(trainingResponse, HttpStatus.OK);
+        } catch (ApplicationException ex) {
+            logger.log(Level.SEVERE, "Exception raised findById REST Call", ex);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
