@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import xyz.zhangyi.ddd.eas.core.application.ApplicationException;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.messages.NominationRequest;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.*;
@@ -68,7 +69,7 @@ public class NominationAppServiceIT {
     }
 
     @Test
-    public void should_nominate_candidate_to_nominee() {
+    public void should_nominate_candidate_to_nominee() throws ApplicationException {
         // given
         NominationRequest nominationRequest = createNominationRequest();
 
@@ -92,6 +93,29 @@ public class NominationAppServiceIT {
         TicketHistory ticketHistory = optionalTicketHistory.get();
         assertThat(ticketHistory.ticketId()).isEqualTo(ticketId);
         assertThat(ticketHistory.getStateTransit()).isEqualTo(StateTransit.from(Available).to(WaitForConfirm));
+    }
+
+    @Test
+    public void should_rollback_if_DomainException_had_been_thrown() {
+        // given
+        NominationRequest nominationRequest = createNominationRequest();
+
+        // removing valid date in order to throw DomainException
+        validDateRepository.remove(validDate);
+
+        // when
+        try {
+            nominationAppService.nominate(nominationRequest);
+        } catch (ApplicationException e) {
+            // then
+            Optional<Ticket> optionalAvailableTicket = ticketRepository.ticketOf(ticketId, Available);
+            assertThat(optionalAvailableTicket.isPresent()).isTrue();
+            Ticket ticket = optionalAvailableTicket.get();
+            assertThat(ticket.id()).isEqualTo(ticketId);
+            assertThat(ticket.trainingId()).isEqualTo(trainingId);
+            assertThat(ticket.status()).isEqualTo(Available);
+            assertThat(ticket.nomineeId()).isEqualTo(null);
+        }
     }
 
     private Training createTraining() {
