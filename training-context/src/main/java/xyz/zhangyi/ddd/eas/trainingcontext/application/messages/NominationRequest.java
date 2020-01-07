@@ -20,6 +20,9 @@ public class NominationRequest implements Serializable {
     private String nominatorEmail;
     private TrainingRole nominatorRole;
 
+    public NominationRequest() {
+    }
+
     public NominationRequest(String ticketId,
                              String trainingId,
                              String candidateId,
@@ -46,6 +49,34 @@ public class NominationRequest implements Serializable {
 
     public TrainingId getTrainingId() {
         return TrainingId.from(this.trainingId);
+    }
+
+    public String getCandidateId() {
+        return candidateId;
+    }
+
+    public String getCandidateName() {
+        return candidateName;
+    }
+
+    public String getCandidateEmail() {
+        return candidateEmail;
+    }
+
+    public String getNominatorId() {
+        return nominatorId;
+    }
+
+    public String getNominatorName() {
+        return nominatorName;
+    }
+
+    public String getNominatorEmail() {
+        return nominatorEmail;
+    }
+
+    public TrainingRole getNominatorRole() {
+        return nominatorRole;
     }
 
     public Candidate toCandidate() {
