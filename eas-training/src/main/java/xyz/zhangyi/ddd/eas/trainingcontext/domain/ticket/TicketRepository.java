@@ -1,9 +1,8 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket;
 
+import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Mapper
 @Repository

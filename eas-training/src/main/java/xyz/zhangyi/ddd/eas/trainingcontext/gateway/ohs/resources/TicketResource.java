@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.zhangyi.ddd.eas.core.application.ApplicationException;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.NominationAppService;
-import xyz.zhangyi.ddd.eas.trainingcontext.application.messages.NominationRequest;
+import xyz.zhangyi.ddd.eas.trainingcontext.application.pl.NominationRequest;
 
 import java.util.Objects;
 import java.util.logging.Level;

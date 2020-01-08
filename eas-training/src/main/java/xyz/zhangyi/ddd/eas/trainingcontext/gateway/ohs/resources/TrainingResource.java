@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.zhangyi.ddd.eas.core.application.ApplicationException;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.TrainingAppService;
-import xyz.zhangyi.ddd.eas.trainingcontext.application.messages.TrainingResponse;
+import xyz.zhangyi.ddd.eas.trainingcontext.application.pl.TrainingResponse;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

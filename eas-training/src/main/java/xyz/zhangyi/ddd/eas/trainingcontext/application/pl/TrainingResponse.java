@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.trainingcontext.application.messages;
+package xyz.zhangyi.ddd.eas.trainingcontext.application.pl;
 
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import xyz.zhangyi.ddd.eas.core.application.ApplicationException;
 import xyz.zhangyi.ddd.eas.core.domain.DomainException;
-import xyz.zhangyi.ddd.eas.trainingcontext.application.messages.NominationRequest;
+import xyz.zhangyi.ddd.eas.trainingcontext.application.pl.NominationRequest;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.NominationService;
 
 @Service
