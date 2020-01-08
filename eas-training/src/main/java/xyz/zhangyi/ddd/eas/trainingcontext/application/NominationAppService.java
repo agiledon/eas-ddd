@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import xyz.zhangyi.ddd.eas.core.application.ApplicationDomainException;
 import xyz.zhangyi.ddd.eas.core.application.ApplicationException;
+import xyz.zhangyi.ddd.eas.core.application.ApplicationInfrastructureException;
+import xyz.zhangyi.ddd.eas.core.application.ApplicationValidationException;
 import xyz.zhangyi.ddd.eas.core.domain.DomainException;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.pl.NominationRequest;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.NominationService;
+
+import java.util.Objects;
 
 @Service
 @EnableTransactionManagement
@@ -16,7 +21,10 @@ public class NominationAppService {
     private NominationService nominationService;
 
     @Transactional(rollbackFor = ApplicationException.class)
-    public void nominate(NominationRequest nominationRequest) throws ApplicationException {
+    public void nominate(NominationRequest nominationRequest) {
+        if (Objects.isNull(nominationRequest)) {
+            throw new ApplicationValidationException("nomination request can not be null");
+        }
         try {
             nominationService.nominate(
                     nominationRequest.getTicketId(),
@@ -24,7 +32,9 @@ public class NominationAppService {
                     nominationRequest.toCandidate(),
                     nominationRequest.toNominator());
         } catch (DomainException ex) {
-            throw new ApplicationException(ex.getMessage(), ex);
+            throw new ApplicationDomainException(ex.getMessage(), ex);
+        } catch (Exception ex) {
+            throw new ApplicationInfrastructureException("Infrastructure Error", ex);
         }
     }
 }

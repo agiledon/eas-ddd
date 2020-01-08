@@ -69,7 +69,7 @@ public class NominationAppServiceIT {
     }
 
     @Test
-    public void should_nominate_candidate_to_nominee() throws ApplicationException {
+    public void should_nominate_candidate_to_nominee() {
         // given
         NominationRequest nominationRequest = createNominationRequest();
 

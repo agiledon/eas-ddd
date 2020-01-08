@@ -17,21 +17,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>eas-core</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>eas-training</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>eas-employee</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
     </dependencies>
 
     <build>

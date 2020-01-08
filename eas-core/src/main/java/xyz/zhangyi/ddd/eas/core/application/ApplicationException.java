@@ -1,9 +1,11 @@
 package xyz.zhangyi.ddd.eas.core.application;
 
-import xyz.zhangyi.ddd.eas.core.domain.DomainException;
+public abstract class ApplicationException extends RuntimeException {
+    public ApplicationException(String message) {
+        super(message);
+    }
 
-public class ApplicationException extends Throwable {
-    public ApplicationException(String message, DomainException ex) {
+    public ApplicationException(String message, Exception ex) {
         super(message, ex);
     }
 }
