@@ -22,11 +22,11 @@
     </dependencyManagement>
 
     <modules>
-        <module>core</module>
-        <module>employee-context</module>
-        <module>attendance-context</module>
-        <module>project-context</module>
-        <module>training-context</module>
+        <module>eas-core</module>
+        <module>eas-employee</module>
+        <module>eas-attendance</module>
+        <module>eas-project</module>
+        <module>eas-training</module>
         <module>eas-entry</module>
     </modules>
 

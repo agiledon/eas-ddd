@@ -10,7 +10,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>eas-entry</artifactId>
+    <artifactId>eas-training</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -23,17 +24,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>eas-training</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>eas-employee</artifactId>
-            <version>${project.parent.version}</version>
+            <groupId>org.antlr</groupId>
+            <artifactId>ST4</artifactId>
+            <version>4.2</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

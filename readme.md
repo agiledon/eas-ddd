@@ -114,7 +114,7 @@ mvn package flyway:migrate
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: xyz.zhangyi.ddd.eas.trainingcontext.domain
-  type-handlers-package: xyz.zhangyi.ddd.eas.trainingcontext.gateway.impl.persistence.typehandlers
+  type-handlers-package: xyz.zhangyi.ddd.eas.trainingcontext.gateway.acl.impl.persistence.typehandlers
 
 spring:
   datasource:
