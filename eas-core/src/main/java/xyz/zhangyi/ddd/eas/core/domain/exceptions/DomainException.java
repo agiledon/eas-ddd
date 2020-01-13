@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.core.domain;
+package xyz.zhangyi.ddd.eas.core.domain.exceptions;
 
 public class DomainException extends RuntimeException {
     public DomainException(String message) {

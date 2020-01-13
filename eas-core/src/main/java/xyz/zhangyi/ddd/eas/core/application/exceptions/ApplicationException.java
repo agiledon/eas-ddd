@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.core.application;
+package xyz.zhangyi.ddd.eas.core.application.exceptions;
 
 public abstract class ApplicationException extends RuntimeException {
     public ApplicationException(String message) {

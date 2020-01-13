@@ -2,9 +2,9 @@ package xyz.zhangyi.ddd.eas.core.ohs;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import xyz.zhangyi.ddd.eas.core.application.ApplicationDomainException;
-import xyz.zhangyi.ddd.eas.core.application.ApplicationInfrastructureException;
-import xyz.zhangyi.ddd.eas.core.application.ApplicationValidationException;
+import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationDomainException;
+import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationInfrastructureException;
+import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationValidationException;
 
 import java.util.function.Supplier;
 import java.util.logging.Level;
