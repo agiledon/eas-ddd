@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.zhangyi.ddd.eas.core.ohs.Resources;
+import xyz.zhangyi.ddd.eas.core.gateway.ohs.Resources;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.NominationAppService;
 import xyz.zhangyi.ddd.eas.trainingcontext.application.pl.NominationRequest;
 

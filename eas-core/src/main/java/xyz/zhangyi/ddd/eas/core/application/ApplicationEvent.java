@@ -1,9 +1,11 @@
 package xyz.zhangyi.ddd.eas.core.application;
 
+import xyz.zhangyi.ddd.eas.core.domain.Event;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ApplicationEvent {
+public abstract class ApplicationEvent implements Event {
     protected final String eventId;
     protected final String createdTimestamp;
     protected final String version;
@@ -16,5 +18,10 @@ public class ApplicationEvent {
         eventId = UUID.randomUUID().toString();
         createdTimestamp = LocalDateTime.now().toString();
         this.version = version;
+    }
+
+    @Override
+    public String eventId() {
+        return eventId;
     }
 }
