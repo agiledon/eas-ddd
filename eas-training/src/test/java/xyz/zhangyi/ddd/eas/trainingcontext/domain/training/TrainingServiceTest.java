@@ -1,6 +1,7 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.training;
 
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.trainingcontext.acl.ports.repositories.TrainingRepository;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 
 import java.time.LocalDateTime;

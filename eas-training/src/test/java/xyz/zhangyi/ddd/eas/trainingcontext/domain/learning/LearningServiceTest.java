@@ -2,11 +2,12 @@ package xyz.zhangyi.ddd.eas.trainingcontext.domain.learning;
 
 import org.junit.Before;
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.trainingcontext.acl.ports.repositories.LearningRepository;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingException;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
-import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingRepository;
+import xyz.zhangyi.ddd.eas.trainingcontext.acl.ports.repositories.TrainingRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
