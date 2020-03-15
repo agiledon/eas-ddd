@@ -18,24 +18,6 @@ import static xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TicketStatus.Ava
 
 public class TicketServiceTest {
     @Test
-    public void should_throw_TicketException_if_available_ticket_not_found() {
-        TicketId ticketId = TicketId.next();
-        TicketRepository mockTickRepo = mock(TicketRepository.class);
-        when(mockTickRepo.ticketOf(ticketId, Available)).thenReturn(Optional.empty());
-
-        TicketService ticketService = new TicketService();
-        ticketService.setTicketRepository(mockTickRepo);
-
-        Candidate candidate = new Candidate("200901010110", "Tom", "tom@eas.com", TrainingId.next());
-        Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
-
-        assertThatThrownBy(() -> ticketService.nominate(ticketId, nominator, candidate))
-                .isInstanceOf(TicketException.class)
-                .hasMessageContaining(String.format("available ticket by id {%s} is not found", ticketId.value()));
-        verify(mockTickRepo).ticketOf(ticketId, Available);
-    }
-
-    @Test
     public void should_nominate_candidate_for_specific_ticket() {
         // given
         TrainingId trainingId = TrainingId.next();
@@ -65,5 +47,23 @@ public class TicketServiceTest {
         verify(mockTickRepo).update(ticket);
         verify(mockTicketHistoryRepo).add(isA(TicketHistory.class));
         verify(mockCandidateRepo).remove(candidate);
+    }
+
+    @Test
+    public void should_throw_TicketException_if_available_ticket_not_found() {
+        TicketId ticketId = TicketId.next();
+        TicketRepository mockTickRepo = mock(TicketRepository.class);
+        when(mockTickRepo.ticketOf(ticketId, Available)).thenReturn(Optional.empty());
+
+        TicketService ticketService = new TicketService();
+        ticketService.setTicketRepository(mockTickRepo);
+
+        Candidate candidate = new Candidate("200901010110", "Tom", "tom@eas.com", TrainingId.next());
+        Nominator nominator = new Nominator("200901010007", "admin", "admin@eas.com", TrainingRole.Coordinator);
+
+        assertThatThrownBy(() -> ticketService.nominate(ticketId, nominator, candidate))
+                .isInstanceOf(TicketException.class)
+                .hasMessageContaining(String.format("available ticket by id {%s} is not found", ticketId.value()));
+        verify(mockTickRepo).ticketOf(ticketId, Available);
     }
 }

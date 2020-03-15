@@ -25,12 +25,10 @@ public class TicketTest {
     }
 
     @Test
-    public void should_throw_TicketException_given_ticket_is_not_AVAILABLE() {
-        Ticket ticket = new Ticket(TicketId.next(), trainingId, TicketStatus.WaitForConfirm);
-
-        assertThatThrownBy(() -> ticket.nominate(candidate, nominator))
-                .isInstanceOf(TicketException.class)
-                .hasMessageContaining("ticket is not available");
+    public void should_generate_ticket_history_after_ticket_was_nominated() {
+        Ticket ticket = new Ticket(TicketId.next(), trainingId);
+        TicketHistory ticketHistory = ticket.nominate(candidate, nominator);
+        assertTicketHistory(ticket, ticketHistory);
     }
 
     @Test
@@ -44,10 +42,12 @@ public class TicketTest {
     }
 
     @Test
-    public void should_generate_ticket_history_after_ticket_was_nominated() {
-        Ticket ticket = new Ticket(TicketId.next(), trainingId);
-        TicketHistory ticketHistory = ticket.nominate(candidate, nominator);
-        assertTicketHistory(ticket, ticketHistory);
+    public void should_throw_TicketException_given_ticket_is_not_AVAILABLE() {
+        Ticket ticket = new Ticket(TicketId.next(), trainingId, TicketStatus.WaitForConfirm);
+
+        assertThatThrownBy(() -> ticket.nominate(candidate, nominator))
+                .isInstanceOf(TicketException.class)
+                .hasMessageContaining("ticket is not available");
     }
 
     private void assertTicketHistory(Ticket ticket, TicketHistory ticketHistory) {
