@@ -38,4 +38,17 @@ public class EmployeeIdGeneratorTest {
         assertThat(newEmp.id()).isEqualTo(EmployeeId.from("202004020103"));
         verify(mockEmpRepo).latestEmployee();
     }
+
+    @Test
+    public void should_generate_next_employeeId_begin_with_0001_given_no_employee_found() {
+        EmployeeRepository mockEmpRepo = mock(EmployeeRepository.class);
+        when(mockEmpRepo.latestEmployee()).thenReturn(Optional.empty());
+
+        EmployeeIdGenerator generator = new EmployeeIdGenerator();
+        generator.setEmployeeRepository(mockEmpRepo);
+        generator.generate(newEmp);
+
+        assertThat(newEmp.id()).isEqualTo(EmployeeId.from("202004020001"));
+        verify(mockEmpRepo).latestEmployee();
+    }
 }
