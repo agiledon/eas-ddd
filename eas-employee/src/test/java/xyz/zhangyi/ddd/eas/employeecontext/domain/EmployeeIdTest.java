@@ -2,10 +2,6 @@ package xyz.zhangyi.ddd.eas.employeecontext.domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.employeecontext.domain.Employee;
-import xyz.zhangyi.ddd.eas.employeecontext.domain.EmployeeId;
-import xyz.zhangyi.ddd.eas.employeecontext.domain.IDCard;
-import xyz.zhangyi.ddd.eas.employeecontext.domain.Phone;
 import xyz.zhangyi.ddd.eas.employeecontext.domain.exceptions.InvalidEmployeeIdException;
 
 import java.time.LocalDateTime;
@@ -34,7 +30,7 @@ public class EmployeeIdTest {
 
         EmployeeId expected = new EmployeeId("201912240102");
         assertThat(employee.id()).isEqualTo(expected);
-        assertThat(employee.id().sequenceCode()).isEqualTo("0102");
+        assertThat(employee.id().sequenceNo()).isEqualTo("0102");
     }
 
     @Test

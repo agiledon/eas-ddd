@@ -8,8 +8,8 @@ public class DateTimes {
     public static boolean isValidFormat(String dateString, LocalDate minDate, LocalDate maxDate) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         try {
-            LocalDate birthday = LocalDate.parse(dateString, dateFormatter);
-            return birthday.isAfter(minDate) && birthday.isBefore(maxDate);
+            LocalDate date = LocalDate.parse(dateString, dateFormatter);
+            return date.isAfter(minDate) && (date.isBefore(maxDate) || date.isEqual(maxDate));
         } catch (DateTimeParseException ex) {
             return false;
         }

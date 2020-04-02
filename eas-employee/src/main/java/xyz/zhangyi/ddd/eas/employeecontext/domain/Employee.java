@@ -22,6 +22,11 @@ public class Employee {
     }
 
     public Employee(String name, IDCard idCard, Phone mobile, LocalDateTime onBoardingDate) {
+        this(null, name, idCard, mobile, onBoardingDate);
+    }
+
+    public Employee(EmployeeId id, String name, IDCard idCard, Phone mobile, LocalDateTime onBoardingDate) {
+        this.id = id;
         this.name = validateName(name);
         this.idCard = requireNonNull(idCard, "ID Card should not be null");
         this.mobile = requireNonNull(mobile, "Mobile Phone should not be null");

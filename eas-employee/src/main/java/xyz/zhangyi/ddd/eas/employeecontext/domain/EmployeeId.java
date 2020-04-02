@@ -17,6 +17,10 @@ public class EmployeeId {
         this.id = id;
     }
 
+    public static EmployeeId from(String id) {
+        return new EmployeeId(id);
+    }
+
     private void validate(String id) {
         validateNullOrEmpty(id);
         validateLength(id);
@@ -54,7 +58,7 @@ public class EmployeeId {
         }
     }
 
-    public String sequenceCode() {
+    public String sequenceNo() {
         return id.substring(id.length() - 4);
     }
 
