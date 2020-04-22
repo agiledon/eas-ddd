@@ -1,15 +1,14 @@
 package xyz.zhangyi.ddd.eas.trainingcontext.domain.course;
 
-import xyz.zhangyi.ddd.eas.core.domain.Identity;
+import xyz.zhangyi.ddd.eas.core.domain.AbstractIdentity;
 
-import java.util.Objects;
 import java.util.UUID;
 
-public class CourseId implements Identity {
+public class CourseId extends AbstractIdentity<String> {
     private String value;
 
-    private CourseId(String value) {
-        this.value = value;
+    protected CourseId(String value) {
+        super(value);
     }
 
     public static CourseId from(String value) {
@@ -18,23 +17,5 @@ public class CourseId implements Identity {
 
     public static CourseId next() {
         return new CourseId(UUID.randomUUID().toString());
-    }
-
-    @Override
-    public String value() {
-        return this.value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CourseId courseId = (CourseId) o;
-        return value.equals(courseId.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
     }
 }

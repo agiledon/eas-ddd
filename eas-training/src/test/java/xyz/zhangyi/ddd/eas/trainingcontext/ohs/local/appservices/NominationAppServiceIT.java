@@ -8,8 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationException;
 import xyz.zhangyi.ddd.eas.trainingcontext.acl.ports.repositories.TicketRepository;
-import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.appservices.NominationAppService;
-import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominationRequest;
+import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominatingCandidateRequest;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.*;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.tickethistory.StateTransit;
@@ -73,10 +72,10 @@ public class NominationAppServiceIT {
     @Test
     public void should_nominate_candidate_to_nominee() {
         // given
-        NominationRequest nominationRequest = createNominationRequest();
+        NominatingCandidateRequest nominatingCandidateRequest = createNominationRequest();
 
         // when
-        nominationAppService.nominate(nominationRequest);
+        nominationAppService.nominate(nominatingCandidateRequest);
 
         // then
         Optional<Ticket> optionalAvailableTicket = ticketRepository.ticketOf(ticketId, Available);
@@ -100,14 +99,14 @@ public class NominationAppServiceIT {
     @Test
     public void should_rollback_if_DomainException_had_been_thrown() {
         // given
-        NominationRequest nominationRequest = createNominationRequest();
+        NominatingCandidateRequest nominatingCandidateRequest = createNominationRequest();
 
         // removing valid date in order to throw DomainException
         validDateRepository.remove(validDate);
 
         // when
         try {
-            nominationAppService.nominate(nominationRequest);
+            nominationAppService.nominate(nominatingCandidateRequest);
         } catch (ApplicationException e) {
             // then
             Optional<Ticket> optionalAvailableTicket = ticketRepository.ticketOf(ticketId, Available);
@@ -135,7 +134,7 @@ public class NominationAppServiceIT {
         return new ValidDate(trainingId, deadline, ValidDateType.PODeadline);
     }
 
-    private NominationRequest createNominationRequest() {
+    private NominatingCandidateRequest createNominationRequest() {
         String ticketId = this.ticketId.value();
         String trainingId = this.trainingId.value();
         String candidateName = "guo jin";
@@ -145,7 +144,7 @@ public class NominationAppServiceIT {
         String nominatorEmail = "yu.ma@eas.com";
         TrainingRole nominatorRole = TrainingRole.Coordinator;
 
-        return new NominationRequest(
+        return new NominatingCandidateRequest(
                 ticketId,
                 trainingId,
                 candidateId,

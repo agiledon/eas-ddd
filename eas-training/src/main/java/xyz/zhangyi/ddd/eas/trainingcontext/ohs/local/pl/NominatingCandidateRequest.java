@@ -9,7 +9,7 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
 import java.io.Serializable;
 
 // Request Message: DTO
-public class NominationRequest implements Serializable {
+public class NominatingCandidateRequest implements Serializable {
     private String ticketId;
     private String trainingId;
     private String candidateId;
@@ -20,18 +20,18 @@ public class NominationRequest implements Serializable {
     private String nominatorEmail;
     private TrainingRole nominatorRole;
 
-    public NominationRequest() {
+    public NominatingCandidateRequest() {
     }
 
-    public NominationRequest(String ticketId,
-                             String trainingId,
-                             String candidateId,
-                             String candidateName,
-                             String candidateEmail,
-                             String nominatorId,
-                             String nominatorName,
-                             String nominatorEmail,
-                             TrainingRole nominatorRole) {
+    public NominatingCandidateRequest(String ticketId,
+                                      String trainingId,
+                                      String candidateId,
+                                      String candidateName,
+                                      String candidateEmail,
+                                      String nominatorId,
+                                      String nominatorName,
+                                      String nominatorEmail,
+                                      TrainingRole nominatorRole) {
         this.ticketId = ticketId;
         this.trainingId = trainingId;
         this.candidateId = candidateId;

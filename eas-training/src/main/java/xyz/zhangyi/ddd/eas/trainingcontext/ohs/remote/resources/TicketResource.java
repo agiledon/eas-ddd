@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.zhangyi.ddd.eas.core.gateway.ohs.Resources;
 import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.appservices.NominationAppService;
-import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominationRequest;
+import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominatingCandidateRequest;
 
 import java.util.logging.Logger;
 
@@ -22,11 +22,11 @@ public class TicketResource {
     private NominationAppService nominationAppService;
 
     @PutMapping
-    public ResponseEntity<?> nominate(@RequestBody NominationRequest nominationRequest) {
+    public ResponseEntity<?> nominate(@RequestBody NominatingCandidateRequest nominatingCandidateRequest) {
         return Resources.with("nominate ticket")
                 .onSuccess(HttpStatus.ACCEPTED)
                 .onError(HttpStatus.BAD_REQUEST)
                 .onFailed(HttpStatus.INTERNAL_SERVER_ERROR)
-                .execute(() -> nominationAppService.nominate(nominationRequest));
+                .execute(() -> nominationAppService.nominate(nominatingCandidateRequest));
     }
 }

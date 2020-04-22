@@ -9,7 +9,7 @@ import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationException;
 import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationInfrastructureException;
 import xyz.zhangyi.ddd.eas.core.application.exceptions.ApplicationValidationException;
 import xyz.zhangyi.ddd.eas.core.domain.exceptions.DomainException;
-import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominationRequest;
+import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominatingCandidateRequest;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.NominationService;
 
 import java.util.Objects;
@@ -21,16 +21,16 @@ public class NominationAppService {
     private NominationService nominationService;
 
     @Transactional(rollbackFor = ApplicationException.class)
-    public void nominate(NominationRequest nominationRequest) {
-        if (Objects.isNull(nominationRequest)) {
+    public void nominate(NominatingCandidateRequest nominatingCandidateRequest) {
+        if (Objects.isNull(nominatingCandidateRequest)) {
             throw new ApplicationValidationException("nomination request can not be null");
         }
         try {
             nominationService.nominate(
-                    nominationRequest.getTicketId(),
-                    nominationRequest.getTrainingId(),
-                    nominationRequest.toCandidate(),
-                    nominationRequest.toNominator());
+                    nominatingCandidateRequest.getTicketId(),
+                    nominatingCandidateRequest.getTrainingId(),
+                    nominatingCandidateRequest.toCandidate(),
+                    nominatingCandidateRequest.toNominator());
         } catch (DomainException ex) {
             throw new ApplicationDomainException(ex.getMessage(), ex);
         } catch (Exception ex) {

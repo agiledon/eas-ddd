@@ -5,11 +5,10 @@ import xyz.zhangyi.ddd.eas.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.Nominator;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.ticket.TrainingRole;
 import xyz.zhangyi.ddd.eas.trainingcontext.domain.training.TrainingId;
-import xyz.zhangyi.ddd.eas.trainingcontext.ohs.local.pl.NominationRequest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NominationRequestTest {
+public class NominatingCandidateRequestTest {
     private String ticketId;
     private String trainingId;
     private String candidateId;
@@ -19,13 +18,13 @@ public class NominationRequestTest {
     private String nominatorName;
     private String nominatorEmail;
     private TrainingRole nominatorRole;
-    private NominationRequest nominationRequest;
+    private NominatingCandidateRequest nominatingCandidateRequest;
 
     @Test
     public void should_compose_Candidate() {
-        nominationRequest = createNominationRequest();
+        nominatingCandidateRequest = createNominationRequest();
 
-        Candidate candidate = nominationRequest.toCandidate();
+        Candidate candidate = nominatingCandidateRequest.toCandidate();
 
         assertThat(candidate.employeeId()).isEqualTo(candidateId);
         assertThat(candidate.name()).isEqualTo(candidateName);
@@ -35,15 +34,15 @@ public class NominationRequestTest {
 
     @Test
     public void should_compose_Nominator() {
-        nominationRequest = createNominationRequest();
+        nominatingCandidateRequest = createNominationRequest();
         Nominator expectedNominator = new Nominator(nominatorId, nominatorName, nominatorEmail, TrainingRole.Coordinator);
 
-        Nominator nominator = nominationRequest.toNominator();
+        Nominator nominator = nominatingCandidateRequest.toNominator();
 
         assertThat(nominator).isEqualTo(expectedNominator);
     }
 
-    private NominationRequest createNominationRequest() {
+    private NominatingCandidateRequest createNominationRequest() {
         ticketId = "3070c3c9-f809-4a06-8fc4-ff7d330c86ca";
         trainingId = "tt70c3c9-f809-4a06-8fc4-ff7d330c86ca";
         candidateId = "201905051000";
@@ -54,7 +53,7 @@ public class NominationRequestTest {
         nominatorEmail = "yu.ma@eas.com";
         nominatorRole = TrainingRole.Coordinator;
 
-        return new NominationRequest(
+        return new NominatingCandidateRequest(
                 ticketId,
                 trainingId,
                 candidateId,
