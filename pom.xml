@@ -60,7 +60,7 @@
         <mybatis.version>3.5.3</mybatis.version>
         <mybatis.spring.version>2.0.3</mybatis.spring.version>
 
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <assertj-core.version>3.6.2</assertj-core.version>
     </properties>
