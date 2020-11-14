@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xyz.zhangyi.ddd.eas.trainingcontext.acl.ports.repositories.LearningRepository" >
+<mapper namespace="xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.LearningRepository" >
     <resultMap id="learningResultMap" type="Learning" >
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="courseId" property="courseId.value" jdbcType="VARCHAR" />

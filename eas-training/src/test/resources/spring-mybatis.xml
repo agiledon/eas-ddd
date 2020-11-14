@@ -21,9 +21,9 @@
         <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
         <property name="typeHandlers" >
             <array>
-                <bean class="xyz.zhangyi.ddd.eas.trainingcontext.acl.adapters.repositories.typehandlers.CourseIdTypeHandler" />
-                <bean class="xyz.zhangyi.ddd.eas.trainingcontext.acl.adapters.repositories.typehandlers.TrainingIdTypeHandler" />
-                <bean class="xyz.zhangyi.ddd.eas.trainingcontext.acl.adapters.repositories.typehandlers.TicketIdTypeHandler" />
+                <bean class="xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.adapters.repositories.typehandlers.CourseIdTypeHandler" />
+                <bean class="xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.adapters.repositories.typehandlers.TrainingIdTypeHandler" />
+                <bean class="xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.adapters.repositories.typehandlers.TicketIdTypeHandler" />
             </array>
         </property>
         <property name="dataSource" ref="dataSource" />
