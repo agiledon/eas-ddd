@@ -1,7 +1,10 @@
 package xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
+
 import java.time.LocalDateTime;
 
+@Aggregate
 public class ChangeHistory {
     private ChangeHistoryId changeHistoryId;
     private Operation operation;

@@ -1,6 +1,7 @@
 package xyz.zhangyi.ddd.eas.valueadded.employeecontext.domain.employee;
 
 import com.google.common.base.Strings;
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.valueadded.employeecontext.domain.exception.InvalidEmployeeException;
 import xyz.zhangyi.ddd.eas.valueadded.employeecontext.domain.exception.InvalidEmployeeIdException;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+@Aggregate
 public class Employee {
     private static final int MAX_SEQUENCE_NO = 9999;
     private EmployeeId id;

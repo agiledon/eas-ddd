@@ -1,11 +1,13 @@
 package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistory;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operation;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operator;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.exception.AssignmentIssueException;
 import java.time.LocalDateTime;
 
+@Aggregate
 public class Issue {
     private IssueId issueId;
     private String name;

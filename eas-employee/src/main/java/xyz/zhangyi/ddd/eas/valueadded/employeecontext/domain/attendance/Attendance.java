@@ -1,9 +1,11 @@
 package xyz.zhangyi.ddd.eas.valueadded.employeecontext.domain.attendance;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.valueadded.employeecontext.domain.exception.InvalidAttendanceException;
 
 import java.time.LocalDate;
 
+@Aggregate
 public class Attendance {
     private AttendanceStatus status;
     private String employeeId;
