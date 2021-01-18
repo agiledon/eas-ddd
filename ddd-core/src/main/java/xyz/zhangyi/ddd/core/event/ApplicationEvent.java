@@ -1,6 +1,4 @@
-package xyz.zhangyi.ddd.eas.core.event;
-
-import xyz.zhangyi.ddd.eas.core.event.Event;
+package xyz.zhangyi.ddd.core.event;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

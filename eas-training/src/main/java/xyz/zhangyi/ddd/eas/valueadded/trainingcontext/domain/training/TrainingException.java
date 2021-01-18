@@ -1,6 +1,6 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training;
 
-import xyz.zhangyi.ddd.eas.core.domain.exception.DomainException;
+import xyz.zhangyi.ddd.core.exception.DomainException;
 
 public class TrainingException extends DomainException {
 

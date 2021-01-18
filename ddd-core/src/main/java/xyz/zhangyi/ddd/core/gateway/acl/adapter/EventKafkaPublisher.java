@@ -1,12 +1,12 @@
-package xyz.zhangyi.ddd.eas.core.gateway.acl.adapter;
+package xyz.zhangyi.ddd.core.gateway.acl.adapter;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import xyz.zhangyi.ddd.eas.core.event.Event;
-import xyz.zhangyi.ddd.eas.core.gateway.acl.port.Destination;
-import xyz.zhangyi.ddd.eas.core.gateway.acl.port.EventPublisher;
+import xyz.zhangyi.ddd.core.gateway.acl.port.Destination;
+import xyz.zhangyi.ddd.core.gateway.acl.port.EventPublisher;
+import xyz.zhangyi.ddd.core.event.Event;
 
 import java.util.Properties;
 

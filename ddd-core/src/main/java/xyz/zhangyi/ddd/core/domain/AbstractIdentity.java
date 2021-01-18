@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.core.domain;
+package xyz.zhangyi.ddd.core.domain;
 
 import java.util.Objects;
 

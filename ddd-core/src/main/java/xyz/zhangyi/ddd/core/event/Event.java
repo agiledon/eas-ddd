@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.core.event;
+package xyz.zhangyi.ddd.core.event;
 
 import java.io.Serializable;
 

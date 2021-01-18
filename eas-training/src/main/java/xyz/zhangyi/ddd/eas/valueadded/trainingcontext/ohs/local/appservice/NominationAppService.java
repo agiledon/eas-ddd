@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
-import xyz.zhangyi.ddd.eas.core.application.exception.ApplicationDomainException;
-import xyz.zhangyi.ddd.eas.core.application.exception.ApplicationException;
-import xyz.zhangyi.ddd.eas.core.application.exception.ApplicationInfrastructureException;
-import xyz.zhangyi.ddd.eas.core.application.exception.ApplicationValidationException;
-import xyz.zhangyi.ddd.eas.core.domain.exception.DomainException;
+import xyz.zhangyi.ddd.core.exception.ApplicationDomainException;
+import xyz.zhangyi.ddd.core.exception.ApplicationException;
+import xyz.zhangyi.ddd.core.exception.ApplicationInfrastructureException;
+import xyz.zhangyi.ddd.core.exception.ApplicationValidationException;
+import xyz.zhangyi.ddd.core.exception.DomainException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.ohs.local.pl.NominatingCandidateRequest;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.NominationService;
 

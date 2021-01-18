@@ -1,6 +1,6 @@
 package xyz.zhangyi.ddd.eas.valueadded.employeecontext.domain.exception;
 
-import xyz.zhangyi.ddd.eas.core.domain.exception.DomainException;
+import xyz.zhangyi.ddd.core.exception.DomainException;
 
 public class InvalidEmployeeIdException extends DomainException {
     public InvalidEmployeeIdException(String message) {

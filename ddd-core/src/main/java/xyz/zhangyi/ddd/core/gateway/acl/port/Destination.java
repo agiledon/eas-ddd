@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.core.gateway.acl.port;
+package xyz.zhangyi.ddd.core.gateway.acl.port;
 
 public class Destination {
     private String host;

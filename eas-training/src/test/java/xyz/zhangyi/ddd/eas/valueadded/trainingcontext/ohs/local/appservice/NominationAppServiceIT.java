@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import xyz.zhangyi.ddd.eas.core.application.exception.ApplicationException;
+import xyz.zhangyi.ddd.core.exception.ApplicationException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TicketRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.ohs.local.pl.NominatingCandidateRequest;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.course.CourseId;

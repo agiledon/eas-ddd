@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>xyz.zhangyi.ddd</groupId>
-            <artifactId>eas-core</artifactId>
+            <artifactId>ddd-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

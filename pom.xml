@@ -22,7 +22,7 @@
     </dependencyManagement>
 
     <modules>
-        <module>eas-core</module>
+        <module>ddd-core</module>
         <module>eas-employee</module>
         <module>eas-project</module>
         <module>eas-training</module>

@@ -1,6 +1,6 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training;
 
-import xyz.zhangyi.ddd.eas.core.domain.Identity;
+import xyz.zhangyi.ddd.core.domain.Identity;
 
 import java.util.Objects;
 import java.util.UUID;
