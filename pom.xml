@@ -24,7 +24,6 @@
     <modules>
         <module>eas-core</module>
         <module>eas-employee</module>
-        <module>eas-attendance</module>
         <module>eas-project</module>
         <module>eas-training</module>
         <module>eas-entry</module>

@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.TicketHistoryRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TicketHistoryRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.TicketId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.TicketStatus;
 

@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exceptions.TicketException;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.TicketException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.*;
 

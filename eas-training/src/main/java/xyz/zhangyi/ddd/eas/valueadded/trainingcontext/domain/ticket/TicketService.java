@@ -2,12 +2,12 @@ package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.TicketRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TicketRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.CandidateRepository;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exceptions.TicketException;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.CandidateRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.TicketException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketHistory;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.TicketHistoryRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TicketHistoryRepository;
 
 import java.util.Optional;
 

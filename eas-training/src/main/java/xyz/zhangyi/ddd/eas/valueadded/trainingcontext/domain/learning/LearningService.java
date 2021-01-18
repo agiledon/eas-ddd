@@ -2,11 +2,11 @@ package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.learning;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.LearningRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.LearningRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.TrainingRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TrainingRepository;
 
 import java.util.Optional;
 

@@ -3,7 +3,7 @@ package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistory;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistoryRepository;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operator;
-import xyz.zhangyi.ddd.eas.projectcontext.domain.exceptions.IssueException;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.exception.IssueException;
 
 import java.util.Optional;
 

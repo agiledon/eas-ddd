@@ -2,7 +2,7 @@ package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket;
 
 import org.junit.Test;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exceptions.NominationException;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.NominationException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.learning.LearningService;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.notification.NotificationService;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;

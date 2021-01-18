@@ -1,17 +1,17 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.notification;
 
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.MailTemplateRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.MailTemplateRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.TrainingRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TrainingRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDateException;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.repositories.ValidDateRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.ValidDateRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDateType;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.ports.clients.NotificationClient;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.clients.NotificationClient;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.*;
 
 import java.time.LocalDateTime;

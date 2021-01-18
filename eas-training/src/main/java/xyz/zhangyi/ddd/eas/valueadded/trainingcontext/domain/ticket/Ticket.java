@@ -1,7 +1,7 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket;
 
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exceptions.TicketException;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.TicketException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.OperationType;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.StateTransit;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketHistory;
