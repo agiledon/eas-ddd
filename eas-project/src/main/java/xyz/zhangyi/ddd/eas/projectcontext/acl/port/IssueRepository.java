@@ -1,7 +1,9 @@
-package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
+package xyz.zhangyi.ddd.eas.projectcontext.acl.port;
 
 import xyz.zhangyi.ddd.core.stereotype.Port;
 import xyz.zhangyi.ddd.core.stereotype.PortType;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.issue.Issue;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.issue.IssueId;
 
 import java.util.Optional;
 

@@ -1,7 +1,8 @@
-package xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory;
+package xyz.zhangyi.ddd.eas.projectcontext.acl.port;
 
 import xyz.zhangyi.ddd.core.stereotype.Port;
 import xyz.zhangyi.ddd.core.stereotype.PortType;
+import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistory;
 
 @Port(PortType.Repository)
 public interface ChangeHistoryRepository {

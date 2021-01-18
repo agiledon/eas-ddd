@@ -2,8 +2,9 @@ package xyz.zhangyi.ddd.eas.projectcontext.domain.issue;
 
 import org.junit.Before;
 import org.junit.Test;
+import xyz.zhangyi.ddd.eas.projectcontext.acl.port.IssueRepository;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistory;
-import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.ChangeHistoryRepository;
+import xyz.zhangyi.ddd.eas.projectcontext.acl.port.ChangeHistoryRepository;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.changehistory.Operator;
 import xyz.zhangyi.ddd.eas.projectcontext.domain.exception.IssueException;
 
