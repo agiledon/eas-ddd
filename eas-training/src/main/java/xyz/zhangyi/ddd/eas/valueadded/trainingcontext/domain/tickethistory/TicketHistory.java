@@ -1,11 +1,13 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.TicketId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.TicketStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Aggregate
 public class TicketHistory {
     private String id;
     private TicketId ticketId;

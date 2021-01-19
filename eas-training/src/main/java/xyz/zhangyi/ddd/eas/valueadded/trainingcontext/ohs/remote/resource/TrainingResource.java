@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.zhangyi.ddd.core.gateway.ohs.Resources;
+import xyz.zhangyi.ddd.core.stereotype.Remote;
+import xyz.zhangyi.ddd.core.stereotype.RemoteType;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.ohs.local.appservice.TrainingAppService;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.ohs.local.pl.TrainingResponse;
 
@@ -15,6 +17,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/trainings")
+@Remote(RemoteType.Resource)
 public class TrainingResource {
     private Logger logger = Logger.getLogger(TrainingResource.class.getName());
 

@@ -1,10 +1,12 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.course.CourseId;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Aggregate
 public class Training {
     private TrainingId id;
     private String title;

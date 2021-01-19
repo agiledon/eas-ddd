@@ -1,5 +1,6 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Nominee;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketOwner;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketOwnerType;
@@ -7,6 +8,7 @@ import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId
 
 import java.util.UUID;
 
+@Aggregate
 public class Candidate {
     private String id;
     private String employeeId;

@@ -7,12 +7,14 @@ import xyz.zhangyi.ddd.core.exception.ApplicationDomainException;
 import xyz.zhangyi.ddd.core.exception.ApplicationInfrastructureException;
 import xyz.zhangyi.ddd.core.exception.ApplicationValidationException;
 import xyz.zhangyi.ddd.core.exception.DomainException;
+import xyz.zhangyi.ddd.core.stereotype.Local;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.ohs.local.pl.TrainingResponse;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingService;
 
 @Service
+@Local
 public class TrainingAppService {
     @Autowired
     private TrainingService trainingService;

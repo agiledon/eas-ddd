@@ -9,6 +9,7 @@ import xyz.zhangyi.ddd.core.exception.ApplicationException;
 import xyz.zhangyi.ddd.core.exception.ApplicationInfrastructureException;
 import xyz.zhangyi.ddd.core.exception.ApplicationValidationException;
 import xyz.zhangyi.ddd.core.exception.DomainException;
+import xyz.zhangyi.ddd.core.stereotype.Local;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.ohs.local.pl.NominatingCandidateRequest;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.NominationService;
 
@@ -16,6 +17,7 @@ import java.util.Objects;
 
 @Service
 @EnableTransactionManagement
+@Local
 public class NominationAppService {
     @Autowired
     private NominationService nominationService;

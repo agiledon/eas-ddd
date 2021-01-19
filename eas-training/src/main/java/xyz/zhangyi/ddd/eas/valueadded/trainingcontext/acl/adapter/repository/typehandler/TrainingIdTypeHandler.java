@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.adapter.repositories.typehandlers;
+package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.adapter.repository.typehandler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

@@ -1,7 +1,10 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.notification;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
+
 import java.util.UUID;
 
+@Aggregate
 public class MailTemplate {
     private String id;
     private String template;

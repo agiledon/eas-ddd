@@ -2,16 +2,18 @@ package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TicketRepository;
+import xyz.zhangyi.ddd.core.stereotype.DomainService;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.TicketRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.CandidateRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.CandidateRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.TicketException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketHistory;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TicketHistoryRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.TicketHistoryRepository;
 
 import java.util.Optional;
 
 @Service
+@DomainService
 public class TicketService {
     @Autowired
     private TicketRepository tickRepo;

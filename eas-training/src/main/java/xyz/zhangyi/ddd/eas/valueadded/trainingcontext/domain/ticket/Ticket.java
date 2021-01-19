@@ -1,5 +1,6 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket;
 
+import xyz.zhangyi.ddd.core.stereotype.Aggregate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.TicketException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.OperationType;
@@ -9,6 +10,7 @@ import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId
 
 import java.time.LocalDateTime;
 
+@Aggregate
 public class Ticket {
     private TicketId id;
     private TrainingId trainingId;

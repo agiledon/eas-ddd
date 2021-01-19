@@ -2,22 +2,24 @@ package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.notification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.MailTemplateRepository;
+import xyz.zhangyi.ddd.core.stereotype.DomainService;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.MailTemplateRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Nominator;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Nominee;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Ticket;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingException;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.TrainingRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.TrainingRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDateException;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repositories.ValidDateRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.ValidDateRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDateType;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.clients.NotificationClient;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.client.NotificationClient;
 
 import java.util.Optional;
 
 @Service
+@DomainService
 public class NotificationService {
     @Autowired
     private MailTemplateRepository templateRepository;
