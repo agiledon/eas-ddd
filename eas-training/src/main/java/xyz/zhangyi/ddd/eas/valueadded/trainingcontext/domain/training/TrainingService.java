@@ -3,7 +3,7 @@ package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.zhangyi.ddd.core.stereotype.DomainService;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.acl.port.repository.TrainingRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.southbound.port.repository.TrainingRepository;
 
 import java.util.Optional;
 
