@@ -1,12 +1,12 @@
 package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket;
 
 import org.junit.Test;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.southbound.port.repository.TicketRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.TicketRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.southbound.port.repository.CandidateRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.CandidateRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.exception.TicketException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketHistory;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.southbound.port.repository.TicketHistoryRepository;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.TicketHistoryRepository;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
 
 import java.util.Optional;
