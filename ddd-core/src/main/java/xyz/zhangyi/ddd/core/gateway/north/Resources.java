@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.core.gateway.ohs;
+package xyz.zhangyi.ddd.core.gateway.north;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

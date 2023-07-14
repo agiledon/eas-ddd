@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import xyz.zhangyi.ddd.core.exception.ApplicationException;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.TicketRepository;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.message.NominatingCandidateRequest;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.north.message.NominatingCandidateRequest;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.course.CourseId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.StateTransit;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.tickethistory.TicketHistory;

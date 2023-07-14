@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.core.gateway.acl.adapter;
+package xyz.zhangyi.ddd.core.gateway.south.adapter;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.kafka.clients.producer.MockProducer;
@@ -7,7 +7,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.Test;
 import xyz.zhangyi.ddd.core.event.ApplicationEvent;
-import xyz.zhangyi.ddd.core.gateway.acl.port.Destination;
+import xyz.zhangyi.ddd.core.gateway.south.port.Destination;
 
 import java.util.Arrays;
 import java.util.List;

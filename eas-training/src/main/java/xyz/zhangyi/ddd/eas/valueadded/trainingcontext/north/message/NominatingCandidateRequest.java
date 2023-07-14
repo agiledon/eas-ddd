@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.message;
+package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.north.message;
 
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.candidate.Candidate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Nominator;

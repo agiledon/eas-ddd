@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.core.gateway.acl.port;
+package xyz.zhangyi.ddd.core.gateway.south.port;
 
 import xyz.zhangyi.ddd.core.event.Event;
 

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public abstract class ApplicationEvent implements Event {
     protected final String eventId;
-    protected final String createdTimestamp;
+    protected final String occurredOn;
     protected final String version;
 
     public ApplicationEvent() {
@@ -14,7 +14,7 @@ public abstract class ApplicationEvent implements Event {
 
     public ApplicationEvent(String version) {
         eventId = UUID.randomUUID().toString();
-        createdTimestamp = LocalDateTime.now().toString();
+        occurredOn = LocalDateTime.now().toString();
         this.version = version;
     }
 

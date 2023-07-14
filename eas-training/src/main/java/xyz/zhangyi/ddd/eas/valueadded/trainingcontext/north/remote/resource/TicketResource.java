@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.zhangyi.ddd.core.gateway.ohs.Resources;
+import xyz.zhangyi.ddd.core.gateway.north.Resources;
 import xyz.zhangyi.ddd.core.stereotype.Remote;
 import xyz.zhangyi.ddd.core.stereotype.RemoteType;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.north.local.appservice.NominationAppService;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.message.NominatingCandidateRequest;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.north.message.NominatingCandidateRequest;
 
 import java.util.logging.Logger;
 

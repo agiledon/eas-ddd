@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.zhangyi.ddd.core.gateway.ohs.Resources;
+import xyz.zhangyi.ddd.core.gateway.north.Resources;
 import xyz.zhangyi.ddd.core.stereotype.Remote;
 import xyz.zhangyi.ddd.core.stereotype.RemoteType;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.north.local.appservice.TrainingAppService;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.message.TrainingResponse;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.north.message.TrainingResponse;
 
 import java.util.logging.Logger;
 
