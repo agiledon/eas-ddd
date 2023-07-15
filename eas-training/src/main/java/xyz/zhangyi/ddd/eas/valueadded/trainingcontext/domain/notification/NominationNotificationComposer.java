@@ -4,7 +4,7 @@ import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Nominator;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Nominee;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Ticket;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.Training;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDate;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validate.ValidDate;
 
 import java.util.ArrayList;
 import java.util.List;

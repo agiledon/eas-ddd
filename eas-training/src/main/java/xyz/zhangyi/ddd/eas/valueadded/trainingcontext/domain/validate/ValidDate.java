@@ -1,4 +1,4 @@
-package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate;
+package xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validate;
 
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
 

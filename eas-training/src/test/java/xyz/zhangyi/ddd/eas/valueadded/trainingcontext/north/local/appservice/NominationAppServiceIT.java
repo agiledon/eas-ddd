@@ -17,9 +17,9 @@ import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.Tick
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.Training;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.training.TrainingId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.TrainingRepository;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDate;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validate.ValidDate;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.south.port.repository.ValidDateRepository;
-import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validdate.ValidDateType;
+import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.validate.ValidDateType;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.Ticket;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.TicketId;
 import xyz.zhangyi.ddd.eas.valueadded.trainingcontext.domain.ticket.TicketStatus;
