@@ -40,7 +40,7 @@
         <db.username>sa</db.username>
         <db.password>123456</db.password>
 
-        <guava.version>28.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <slf4j.version>1.7.5</slf4j.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
